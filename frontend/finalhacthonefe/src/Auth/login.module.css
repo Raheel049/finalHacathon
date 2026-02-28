@@ -1,0 +1,129 @@
+/* Custom Fonts and Smooth Scrolling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+  min-height: 100vh;
+  /* Dark matching background gradient */
+  background: radial-gradient(circle at center,  #0d140f  0%, #18154a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Page Load Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-box {
+  background: rgba(117, 215, 158, 0.05); /* Glassmorphism effect */
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  width: 380px;
+  border-radius: 15px;
+  border: 1px solid rgb(21, 41, 20);
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgb(103, 225, 103);
+  animation: fadeInUp 0.8s ease-out; /* Entry animation */
+}
+
+.login-box h2 {
+  text-align: center;
+  color: #4caf50; /* Light green for contrast */
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  outline: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Input Focus Glow */
+.field input:focus {
+  border-color: #4caf50;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+.field label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  color: #bbb;
+  font-size: 14px;
+  transform: translateY(-50%);
+  background: transparent;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+/* Floating Label Logic */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -12px;
+  left: 10px;
+  font-size: 12px;
+  color: #e4e7e0; /* Parrot green label */
+  font-weight: bold;
+}
+
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 14px;
+  background: #1b5e20; /* Dark Green */
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover:not(:disabled) {
+  border: 1px solid #76ff03; /* Parrot Color (Bright Neon) */
+  color: #fffbfb; /* Contrast text for parrot color */
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(115, 192, 53, 0.4);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

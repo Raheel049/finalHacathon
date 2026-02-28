@@ -1,0 +1,144 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Background focus ke liye */
+}
+
+/* Container with Deep Dark Gradient */
+.signup-container{
+  min-height: 100vh;
+  background: radial-gradient(circle at center,   #0d140f  0%, #18154a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+/* Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Glassmorphism Box */
+.signup-box {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  padding: 20px 35px;
+  width: 380px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgb(103, 225, 103); /* Subtle green outer glow */
+  animation: slideUpFade 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* .signup-box:hover {
+  border-color: greenyellow; 
+} */
+
+
+h2 {
+  text-align: center;
+  color: #76ff03; /* Parrot Green heading */
+  margin-bottom: 35px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 15px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  outline: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Glow Effect on Focus */
+.field input:focus {
+  border-color: #76ff03;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(118, 255, 3, 0.2);
+}
+
+.field label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  color: #aaa;
+  font-size: 14px;
+  transform: translateY(-50%);
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Label movement logic */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -12px;
+  left: 12px;
+  font-size: 12px;
+  color: #76ff03;
+  font-weight: 600;
+  background: #0d140f; /* Background color se match */
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+/* Professional Button */
+button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 15px;
+  background: #1b5e20; /* Primary Dark Green */
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Parrot Hover Effect */
+button:hover:not(:disabled) {
+  background: #76ff03; /* Bright Parrot Color */
+  color: #f6f2f2; /* Dark text for readability on bright background */
+  box-shadow: 0 10px 20px rgba(118, 255, 3, 0.4);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

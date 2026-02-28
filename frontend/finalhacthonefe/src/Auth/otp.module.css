@@ -1,0 +1,66 @@
+.otp-container {
+    min-height: 100vh;
+    background: #e8f5e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .otp-box {
+    background: #fff;
+    padding: 35px 30px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .otp-box h2 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+  }
+  
+  .otp-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .otp-box input {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    outline: none;
+  }
+  
+  .otp-box input:focus {
+    border-color: #2e7d32;
+  }
+  
+  .otp-box button {
+    width: 100%;
+    padding: 12px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .otp-box button:disabled {
+    background: #9ccc9c;
+    cursor: not-allowed;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  

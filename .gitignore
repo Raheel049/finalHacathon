@@ -1,0 +1,9 @@
+frontend/.env
+backend/.env
+
+# Agar aap chahte hain ke kisi bhi folder mein .env ho wo ignore ho jaye:
+**/.env
+
+# Node modules ko bhi ignore karna zaroori hai
+node_modules/
+**/node_modules/
