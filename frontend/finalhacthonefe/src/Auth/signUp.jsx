@@ -137,7 +137,7 @@ const SignUp = () => {
           )}
         </div>
 
-        <Link to={"/"} className="text-sm text-white hover:underline mb-4 block">
+        <Link to={"/login"} className="text-sm text-white hover:underline mb-4 block">
           Have an already Account?
         </Link>
 

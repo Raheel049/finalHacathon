@@ -398,3 +398,16 @@ export const changePassword = async (request, response) => {
         })
     }
 }
+
+
+// 3. Get Current Logged-in User (Security ke liye)
+export const getCurrentUser = async (req, res) => {
+  try {
+      // req.user.id aapke authMiddleware se aayega
+      const user = await userModel.findById(req.user.id).select('role name');
+      console.log(user,"user name and role");
+      res.status(200).json({ success: true, user });
+  } catch (err) {
+      res.status(500).json({ success: false, error: err.message });
+  }
+};

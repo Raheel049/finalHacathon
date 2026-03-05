@@ -17,11 +17,28 @@ const Login = () => {
       const URL = `${API}/api/auth/login`;
       const userObj = { email, password };
       const res = await axios.post(URL, userObj);
+
+      // 1. Data Save Karo (Token aur Role)
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userEmail", res.data.data)
+      localStorage.setItem("userRole", res.data.role); // Role save karna zaroori hai
+
       alert(res.data.message || "Login successful");
 
-        navigate("/dashboard");
+      // 2. Role-Based Navigation Logic
+      const role = res.data.role; // Backend se role 'Admin', 'Doctor', etc aana chahiye
+
+      if (role === "Admin") {
+        navigate("/Admin/AdminDashboard");
+      } else if (role === "Doctor") {
+        navigate("/Doctor/Doctors");
+      } else if (role === "Receptionist") {
+        navigate("/Receptionist/ReceptionDashboard");
+      }else if (role === "Patient") {
+        navigate("/Patient/Dashboard");
+      } else {
+        // Default land for Patients/Users
+        navigate("/");
+      }
       
     } catch (error) {
       alert(error.response?.data?.message || "Error logging in");
@@ -33,8 +50,7 @@ const Login = () => {
   return (
     <div className={styles["login-container"]}>
       <div className={styles["login-box"]}>
-        {/* Tailwind Heading Fix: text size aur bold reset ho gaya tha */}
-        <h2 className={`${styles["login-title"]} text-2xl font-bold text-center text-#2e7d32 mb-6`}>
+        <h2 className={`${styles["login-title"]} text-2xl font-bold text-center text-[#2e7d32] mb-6`}>
           Login Page
         </h2>
 
@@ -46,10 +62,8 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder=" "
-              /* Tailwind Input Fix: border aur focus styling reset ho gayi thi */
-              className={`${styles["input-field"]} w-full p-2 border rounded focus:ring-2 focus:ring-#2e7d32 outline-none`}
+              className={`${styles["input-field"]} w-full p-2 border rounded focus:ring-2 focus:ring-[#2e7d32] outline-none`}
             />
-            {/* Tailwind Label Fix: font weight add kiya */}
             <label className={`${styles["label-text"]} font-medium`}>Email Address</label>
           </div>
 
@@ -60,7 +74,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder=" "
-              className={`${styles["input-field"]} w-full p-2 border rounded focus:ring-2 focus:ring-#2e7d32 outline-none`}
+              className={`${styles["input-field"]} w-full p-2 border rounded focus:ring-2 focus:ring-[#2e7d32] outline-none`}
             />
             <label className={`${styles["label-text"]} font-medium`}>Password</label>
           </div>
@@ -69,11 +83,10 @@ const Login = () => {
             Create an Account!
           </Link>
 
-          {/* Tailwind Button Fix: background aur hover state */}
           <button 
             type="submit" 
             disabled={loading}
-            className={`${loading ? styles["btn-disabled"] : styles["submit-btn"]} w-full bg-#2e7d32 text-white py-2 rounded font-bold hover:bg-[#1a5a22] transition-colors`}
+            className={`${loading ? styles["btn-disabled"] : styles["submit-btn"]} w-full bg-[#2e7d32] text-white py-2 rounded font-bold hover:bg-[#1a5a22] transition-colors`}
           >
             {loading ? "Logging in..." : "Login"}
           </button>

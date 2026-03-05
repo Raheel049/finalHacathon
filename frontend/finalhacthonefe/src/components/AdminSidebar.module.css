@@ -1,0 +1,80 @@
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #ffffff; /* White background as per image_0 */
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Taake sidebar apni jagah rahe */
+    left: 0;
+    top: 0;
+  }
+  
+  .logo {
+    padding: 30px 25px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .plus {
+    color: #3b82f6;
+    font-size: 30px;
+  }
+  
+  .nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+  }
+  
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+  
+  .link:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+  }
+  
+  .activeLink {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+  }
+  
+  .footer {
+    padding: 20px;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  .logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px;
+  }
+  
+  .logout:hover {
+    background: #fef2f2;
+  }

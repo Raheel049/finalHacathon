@@ -1,0 +1,180 @@
+/* 1. Main Container */
+.managerContainer {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* 2. Stepper UI (University Style) */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stepper span {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #64748b;
+    transition: 0.4s;
+}
+
+.activeStep {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    transform: scale(1.2);
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+    background: #e2e8f0;
+    border-radius: 2px;
+}
+
+/* 3. Form Cards (Step 1 & 2) */
+.formCard {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.formCard label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.formCard input, .formCard select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    background: white;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.formCard input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* 4. User Details Display (Step 2 Specific) */
+.userDetails {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border-left: 5px solid #10b981; /* Care Green */
+}
+
+.userDetails p {
+    margin: 8px 0;
+    font-size: 15px;
+    color: #1e293b;
+}
+
+/* 5. Shining Buttons */
+.primaryBtn, .updateBtn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.primaryBtn { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.updateBtn { background: linear-gradient(135deg, #10b981, #059669); }
+
+.primaryBtn::after, .updateBtn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: 0.5s;
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    to { left: 250%; }
+}
+
+.btnGroup {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.backBtn {
+    flex: 1;
+    background: #f1f5f9;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+}
+
+/* 6. Animations */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dashboard Switch Button (Special Button in Patient Sidebar) */
+.doctorSwitchBtn {
+    background: #f0fdf4;
+    color: #10b981;
+    border: 2px dashed #10b981;
+    padding: 12px;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+    100% { transform: scale(1); }
+}

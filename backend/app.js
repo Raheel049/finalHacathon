@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 dotenv.config()
 import authRoute from "./routes/authRoutes.js";
 import cors from "cors"
-// import adminPortalRoutes from "./routes/adminPortalRoutes.js";
-// import studentDashboardRoutes from "./routes/studentDashboardRoutes.js";
+import router from "./routes/adminRoutes.js";
+import recpRouter from "./routes/receptionRoutes.js";
+
 
 const app = express()
 const port = 5000  
@@ -16,7 +17,8 @@ app.use(express.urlencoded({extended : true}))
 
 dbConnect();
 app.use("/api/auth",authRoute);
-// app.use("/api/admin", adminPortalRoutes);
+app.use("/api/admin", router);
+app.use("/api/reception", recpRouter);
 // app.use("/api/student",studentDashboardRoutes);
 
 app.post("/apitest", (request, response) => {

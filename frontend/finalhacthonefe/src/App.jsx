@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from './Auth/login'
 import AuthRoute from './routes/authRoutes'
 import PrivateRoute from './routes/privateRoutes'
@@ -8,38 +8,57 @@ import ChangePassword from './Auth/changePassword'
 import OtpReset from './Auth/otpReset'
 import ForgotPassword from './Auth/forgotPassword'
 import OtpVerify from './Auth/otp'
-import AdminDashboard from './pages/Admin/dashboard'
-import Doctors from './pages/Admin/pages/doctors'
-import Receptionists from './pages/Admin/receptionists'
-import DoctorDashboard from './doctor/doctor'
-import PatientRegistration from './reciption/patientForm'
-
-
+import AdminLayout from './components/AdminLayout' // Naya layout import karein
+import AdminDashboard from './pages/Admin/AdminDashboard'
+import Doctors from './pages/Doctor/Doctors'
+import AddDoctor from './pages/Admin/AddDoctor'
+import ReceptionLayout from './components/ReceptionLayout'
+import ReceptionDashboard from './pages/Receptionist/ReceptionDashboard'
+import AddPatient from './pages/Receptionist/AddPatient'
+import PatientDashboard from './pages/Patient/Dashboard'
+import PatientLayout from './components/PatientLayout'
+import UserManagement from './pages/Admin/UserManagement'
+import HomePage from './pages/Home/homePage'
 
 const App = () => {
-  
-
   return (
-   <Routes>
+    <Routes>
 
-    <Route element={<AuthRoute />}>
-    <Route path="/" element={<Login />} />
-    <Route path='/changePassword' element={<ChangePassword />} />
-    <Route path='/forgotPassword' element={<ForgotPassword />} />
-    <Route path='/otp' element={<OtpVerify />} />
-    <Route path='/otpReset' element={<OtpReset />} />
-    <Route path='/signUp' element={<SignUp />} />
+      <Route path='/' element={<HomePage />}/> 
 
-      
-    </Route>
-    <Route element={<PrivateRoute />}>
-      <Route path='/dashboard' element={<AdminDashboard />}/>
-      <Route path='/doctors' element={<Doctors />} />
-      <Route path='/receptionists' element={<Receptionists />} />
-      <Route path='/doctor' element={<DoctorDashboard />} />
-      <Route path='/patientsForm' element={<PatientRegistration />} />
-    </Route>
-   </Routes>
+      {/* --- PUBLIC ROUTES --- */}
+      <Route element={<AuthRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/otp' element={<OtpVerify />} />
+        <Route path='/forgotPassword' element={<ForgotPassword />} />
+        <Route path='/otpReset' element={<OtpReset />} />
+        <Route path='/changePassword' element={<ChangePassword />} />
+      </Route>
+
+      {/* --- PRIVATE ROUTES (With Sidebar Layout) --- */}
+      <Route element={<PrivateRoute />}>
+        <Route element={<AdminLayout />}>
+           {/* Default redirect after login */}
+          <Route path='/Admin/AdminDashboard' element={<AdminDashboard />}/>
+          <Route path='/Doctor/Doctors' element={<Doctors />} />
+          <Route path="/Admin/AddDoctor" element={<AddDoctor />} /> 
+          <Route path='/Admin/UserManagement' element={<UserManagement />}/>
+        </Route>
+      </Route>
+
+      <Route element={<ReceptionLayout />}>
+        <Route path='/Receptionist/ReceptionDashboard' element={<ReceptionDashboard />} />
+        <Route path='/Receptionist/AddPatient' element={<AddPatient />} />
+      </Route>
+
+      <Route element={<PatientLayout />}>
+        <Route path='/Patient/Dashboard' element={<PatientDashboard />} />
+      </Route>
+
+      {/* 404 Redirect */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   )
 }
 

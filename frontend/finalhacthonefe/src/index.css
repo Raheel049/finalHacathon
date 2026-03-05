@@ -1,0 +1,18 @@
+/* index.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* overflow: hidden ko zabardasti khatam karne ke liye */
+    overflow-x: hidden !important; 
+    overflow-y: auto !important; 
+    min-height: 100vh;
+    height: auto !important; /* Fixed height ko remove karega */
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

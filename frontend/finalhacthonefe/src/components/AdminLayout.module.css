@@ -1,0 +1,44 @@
+.layoutContainer {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8fafc; /* Light grayish-blue background */
+  }
+  
+  .sidebarWrapper {
+    width: 260px; /* Sidebar ki fixed width */
+    height: 100vh;
+    position: fixed; /* Sidebar ko screen par fix rakhne ke liye */
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .mainContent {
+    flex: 1;
+    margin-left: 260px; /* Sidebar ki width ke barabar margin taake content side par rahay */
+    min-height: 100vh;
+    padding: 20px 40px; /* Page ke sides par thori jagah chhorne ke liye */
+    transition: all 0.3s ease;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .sidebarWrapper {
+      width: 200px;
+    }
+    .mainContent {
+      margin-left: 200px;
+      padding: 20px;
+    }
+  }
+  
+  /* Agar mobile par sidebar chhupana ho (Optional Hackathon Tip) */
+  @media (max-width: 768px) {
+    .sidebarWrapper {
+      display: none; /* Mobile par hamburger menu use karna parega */
+    }
+    .mainContent {
+      margin-left: 0;
+    }
+  }

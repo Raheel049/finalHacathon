@@ -1,5 +1,5 @@
 import express from "express"
-import { signUpHandler, loginHandler, verificationHandler, resetOtp, forgotPassword, changePassword } from "../controller/auth.js";
+import { signUpHandler, loginHandler, verificationHandler, resetOtp, forgotPassword, changePassword, getCurrentUser } from "../controllers/auth.js";
 
 const authRoute = express.Router();
 
@@ -14,6 +14,8 @@ authRoute.post("/reset-otp", resetOtp);
 authRoute.post("/forgot-password", forgotPassword);
 
 authRoute.post("/change-password", changePassword);
+
+authRoute.get('/me', getCurrentUser);
 
 export default authRoute 
 
