@@ -1,11 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .formContainer {
-    background: white;
+    /* Desktop Default */
+    background: rgb(182, 211, 237);
     padding: 35px;
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    max-width: 900px;
     margin: 20px auto;
+    margin-left: 260px; /* Sidebar space */
+    width: calc(100% - 280px); /* 260px sidebar + 20px extra gap */
     animation: fadeIn 0.5s ease-in;
+    transition: all 0.3s ease;
 }
 
 .title {
@@ -13,11 +22,12 @@
     margin-bottom: 30px;
     border-left: 5px solid #3b82f6;
     padding-left: 15px;
+    font-size: 24px;
 }
 
 .gridForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Desktop pe 2 columns */
     gap: 20px;
 }
 
@@ -39,6 +49,7 @@
     border-radius: 8px;
     outline: none;
     transition: 0.3s;
+    width: 100%;
 }
 
 .inputGroup input:focus {
@@ -47,7 +58,7 @@
 }
 
 .submitBtn {
-    grid-column: span 2;
+    grid-column: span 2; /* Desktop pe full width */
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
     padding: 15px;
@@ -59,9 +70,41 @@
     transition: 0.3s;
 }
 
-.submitBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+/* --- RESPONSIVE QUERIES --- */
+
+/* 1. Tablets (1024px se niche) */
+@media (max-width: 1024px) {
+    .formContainer {
+        margin-left: 260px;
+        width: calc(100% - 280px);
+        padding: 25px;
+    }
+}
+
+/* 2. Mobile (768px se niche) */
+@media (max-width: 768px) {
+    .formContainer {
+        margin-left: 15px !important; /* Sidebar hat gaya mobile pe */
+        margin-right: 15px !important;
+        width: calc(100% - 30px) !important;
+        margin-top: 80px; /* Top bar space */
+        padding: 20px;
+    }
+
+    .gridForm {
+        grid-template-columns: 1fr; /* Inputs aik ke niche aik aayenge */
+        gap: 15px;
+    }
+
+    .submitBtn {
+        grid-column: span 1; /* Mobile pe single column span */
+        padding: 12px;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
 }
 
 @keyframes fadeIn {

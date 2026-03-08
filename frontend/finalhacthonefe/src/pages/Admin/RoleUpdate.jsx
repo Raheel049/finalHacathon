@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from './UserManagement.module.css';
-
+import toast from 'react-hot-toast';
 const RoleUpdate = ({ user, onBack, onSuccess }) => {
     const [selectedRole, setSelectedRole] = useState(user.role);
     const [updating, setUpdating] = useState(false);
@@ -11,12 +11,12 @@ const RoleUpdate = ({ user, onBack, onSuccess }) => {
         try {
             await axiosInstance.patch('/admin/update-role', {
                 userId: user._id,
-                newRole: selectedRole
+                newRole: selectedRole,
             });
-            alert(`Success! User has been promoted to ${selectedRole}`);
+            toast.success(`Success! User has been promoted to ${selectedRole}`);
             onSuccess(); // Flow reset karne ke liye
         } catch (err) {
-            alert("Update failed! Please try again.",err.message);
+            toast.error("Update failed! Please try again.",err.message);
         } finally {
             setUpdating(false);
         }
@@ -37,9 +37,12 @@ const RoleUpdate = ({ user, onBack, onSuccess }) => {
                 onChange={(e) => setSelectedRole(e.target.value)}
                 className={styles.selectField}
             >
-                <option value="Patient">Patient (Default)</option>
+                <option value="User">User (Default)</option>
                 <option value="Doctor">Doctor</option>
                 <option value="Receptionist">Receptionist</option>
+                <option value="Patient">Patient</option>
+                <option value="Admin">Receptionist</option>
+
             </select>
 
             <div className={styles.btnGroup}>

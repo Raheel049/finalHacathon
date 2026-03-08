@@ -1,39 +1,49 @@
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+
+}
+
 .sidebar {
     width: 260px;
     height: 100vh;
-    background: #ffffff; /* White background as per image_0 */
+    background: #ffffff;
     border-right: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
-    position: fixed; /* Taake sidebar apni jagah rahe */
+    position: fixed;
     left: 0;
     top: 0;
-  }
-  
-  .logo {
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo {
     padding: 30px 25px;
     font-size: 24px;
     font-weight: 800;
     color: #1e293b;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
     gap: 10px;
-  }
-  
-  .plus {
+
+}
+
+.plus {
     color: #3b82f6;
     font-size: 30px;
-  }
-  
-  .nav {
+}
+
+.nav {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 10px;
     gap: 5px;
-  }
-  
-  .link {
+}
+
+.link {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -43,25 +53,25 @@
     font-weight: 500;
     border-radius: 10px;
     transition: 0.3s;
-  }
-  
-  .link:hover {
+}
+
+.link:hover {
     background: #f1f5f9;
     color: #1e293b;
-  }
-  
-  .activeLink {
-    background: #eff6ff;
-    color: #2563eb;
+}
+
+.activeLink {
+    background: #eff6ff !important;
+    color: #2563eb !important;
     font-weight: 600;
-  }
-  
-  .footer {
+}
+
+.footer {
     padding: 20px;
     border-top: 1px solid #f1f5f9;
-  }
-  
-  .logout {
+}
+
+.logout {
     width: 100%;
     display: flex;
     align-items: center;
@@ -73,8 +83,212 @@
     cursor: pointer;
     font-weight: 600;
     border-radius: 8px;
-  }
-  
-  .logout:hover {
+    transition: 0.2s;
+}
+
+.logout:hover {
     background: #fef2f2;
+}
+
+/* --- Responsive Settings --- */
+
+/* Mobile Toggle Button */
+.mobileToggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background: #dbd5d5;
+    border: 1px solid #e2e8f0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.topBar{
+  display: none;
+  width: 260px;
+}
+
+.closeIcon{
+  display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%); /* Screen se bahar */
+    }
+
+      /* .TopBar{
+
+        display: block;
+        
+      } */
+
+    .topBar {
+      /* position: fixed; */
+      top: 0;
+      left: 260px; /* Desktop Sidebar width */
+      right: 0;
+      height: 70px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      border-bottom: 1px solid #e2e8f0;
+      z-index: 900;
+      transition: all 0.3s ease;
+      width: 100%;
+      
+    }
+    
+    .topLeft {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .menuIcon {
+      cursor: pointer;
+      color: #64748b;
+      font-size: 20px;
+      display: none; /* Desktop pe hidden */
+    }
+    
+    .searchBar {
+      background: #f1f5f9;
+      padding: 8px 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      transition: 0.3s;
+    }
+    
+    .searchBar:focus-within {
+      border-color: #3b82f6;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+    
+    .searchIcon {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+    
+    .searchBar input {
+      border: none;
+      background: transparent;
+      outline: none;
+      color: #1e293b;
+      font-size: 14px;
+      width: 200px;
+    }
+    
+    .topRight {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    .iconBadge {
+      position: relative;
+      cursor: pointer;
+      color: #64748b;
+      transition: 0.2s;
+    }
+    
+    .iconBadge:hover {
+      color: #3b82f6;
+    }
+    
+    .dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 9px;
+      height: 9px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
+    
+    .adminProfile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 20px;
+      border-left: 1px solid #e2e8f0;
+    }
+    
+    .adminText {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .adminName {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.2;
+    }
+    
+    .adminText small {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+    
+    .avatar {
+      color: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .menuIcon {
+      display: block; /* Show hamburger on mobile */
   }
+
+  /* .searchBar, .adminText {
+      display: none; 
+  } */
+
+    .sidebarOpen {
+        transform: translateX(0); /* Screen ke andar */
+    }
+
+    .closeIcon{
+      display: block;
+      transform: translate(-100%);
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .mobileToggle, .overlay {
+        display: block;
+    }
+}
+
+@media (max-width: 576px){
+  .searchBar{
+    display: none;
+  }
+}

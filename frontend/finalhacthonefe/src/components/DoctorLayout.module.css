@@ -1,0 +1,130 @@
+.layoutContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f0f4f8; /* Soft Medical Blue Gray */
+    overflow: hidden;
+}
+
+.sidebarWrapper {
+    width: 260px;
+    height: 100%;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-right: 1px solid #d1d9e6;
+    z-index: 20;
+}
+
+.mainWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.doctorHeader {
+    height: 80px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.medIcon {
+    color: #0d9488; /* Teal color for Doctors */
+}
+
+.headerText h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 800;
+}
+
+.headerText p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.notifyBtn {
+    background: #f1f5f9;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    color: #475569;
+    position: relative;
+    cursor: pointer;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 1px solid #e2e8f0;
+    padding-left: 20px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    background: #0d9488;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.logoutBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #475569;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logoutBtn:hover {
+    background: #fff1f2;
+    color: #e11d48;
+    border-color: #fda4af;
+}
+
+.pageBody {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}

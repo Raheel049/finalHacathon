@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from './Dashboard.module.css';
+import toast from 'react-hot-toast';
 
 const PatientDashboard = () => {
   const [patientData, setPatientData] = useState(null);
@@ -13,7 +14,7 @@ const PatientDashboard = () => {
         setPatientData(res.data.data);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching data", err);
+        toast.error("Error fetching data", err);
         setLoading(false);
       }
     };

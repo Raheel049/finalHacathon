@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from './AddPatient.module.css';
 import { UserPlus } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const AddPatient = () => {
     const [formData, setFormData] = useState({
@@ -14,10 +15,10 @@ const AddPatient = () => {
         e.preventDefault();
         try {
             const res = await axiosInstance.post('/reception/add-patient', formData);
-            alert(res.data.message);
+            toast.success(res.data.message);
             setFormData({ name: '', age: '', gender: 'Male', phone: '', email: '', bloodGroup: 'O+', address: '' });
         } catch (err) {
-            alert(err.response?.data?.message || "Registration failed");
+            toast.error(err.response?.data?.message || "Registration failed");
         }
     };
 

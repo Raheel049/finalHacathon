@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./otp.module.css"; // CSS Module import
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const OtpVerify = () => {
   const API = import.meta.env.VITE_API_URL;
@@ -53,7 +54,7 @@ const OtpVerify = () => {
       };
 
       const res = await axios.post(URL, body);
-      alert(res.data.message || "OTP Verified Successfully");
+      toast.success(res.data.message || "OTP Verified Successfully");
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Invalid OTP or Server Error");

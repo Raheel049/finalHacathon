@@ -15,7 +15,7 @@ const ReceptionDashboard = () => {
 
             {/* QUICK ACTIONS CARDS */}
             <div className={styles.actionsGrid}>
-                <div className={styles.actionCard} onClick={() => navigate('/reception/add-patient')}>
+                <div className={styles.actionCard} onClick={() => navigate('/Receptionist/AddPatient')}>
                     <UserPlus size={40} color="#10b981" />
                     <h3>Add Patient</h3>
                     <p>Register a new patient into the system</p>

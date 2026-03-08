@@ -1,0 +1,114 @@
+.formCard {
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    margin: 50px auto;
+}
+
+.formCard label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.formCard input, .formCard select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    background: white;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.formCard input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.primaryBtn, .updateBtn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.primaryBtn { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+
+.primaryBtn::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: 0.5s;
+    animation: shine 4s infinite;
+}
+
+@media (max-width: 1024px) {
+    .formCard {
+        /* margin-left: 260px;
+        width: calc(100% - 260px); */
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+/* 2. Mobile (768px se niche) */
+@media (max-width: 768px) {
+    .formCard {
+         /* Sidebar mobile pe bahar hota hai */
+        margin-right: 15px;
+        margin-left: 15px;
+        width: calc(100% - 30px); /* Full width minus margins */
+        margin-top: 80px; /* TopBar ke niche adjustment */
+        padding: 20px 15px;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr; /* Mobile pe inputs aik ke niche aik aayenge */
+        gap: 15px;
+    }
+
+    .primaryBtn {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
+
+/* Shine Animation */
+@keyframes shine {
+    from { left: -150%; }
+    to { left: 150%; }
+}
+
+.primaryBtn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    animation: shine 4s infinite;
+}

@@ -398,14 +398,19 @@ export const changePassword = async (request, response) => {
         })
     }
 }
-
-
-// 3. Get Current Logged-in User (Security ke liye)
 export const getCurrentUser = async (req, res) => {
   try {
-      // req.user.id aapke authMiddleware se aayega
-      const user = await userModel.findById(req.user.id).select('role name');
-      console.log(user,"user name and role");
+      // Agar middleware fail hua to req.user undefined hoga
+      if (!req.user || !req.user.id) {
+          return res.status(400).json({ success: false, error: "User ID missing from request" });
+      }
+
+      const user = await userModel.findById(req.user.id).select('name role');
+      
+      if (!user) {
+          return res.status(404).json({ success: false, error: "User not found" });
+      }
+
       res.status(200).json({ success: true, user });
   } catch (err) {
       res.status(500).json({ success: false, error: err.message });

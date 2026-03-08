@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -9,6 +9,7 @@ import {
   LogOut 
 } from 'lucide-react';
 import styles from './ReceptionSidebar.module.css'; // Wahi CSS use karein jo Admin ki thi
+import { FaBars, FaTimes, FaSearch, FaBell, FaUserCircle, } from 'react-icons/fa';
 
 const ReceptionSidebar = () => {
     const menuItems = [
@@ -19,10 +20,38 @@ const ReceptionSidebar = () => {
         { name: 'Billing/Reports', path: '/Receptionist/reports', icon: <FileText size={20} /> },
     ];
 
+    const [isOpen, setIsOpen] = useState(false)
+    
+    const handleTopNav = () => {
+        setIsOpen(!isOpen)
+        console.log(isOpen)
+    }
+    
+
     return (
-        <aside className={styles.sidebar}>
+        <div>
+            <div className={styles.topBar}>
+                <h1 onClick={handleTopNav}><FaBars/></h1>
+                <div className={styles.Search}>
+                <input type="text" placeholder='searching...' />
+                <FaSearch className={styles.searhIcon} />
+                </div>
+                <FaBell className={styles.searhIcon}/>
+                <FaUserCircle className={styles.searhIcon}/>
+
+            </div>
+
+            <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`}>
             <div className={styles.logo}>
-                <span className={styles.plus}>+</span> ClinicSaas
+                <div className={styles.iconIcon}>
+                <span className={styles.plus}>+ClinicSaas</span> 
+                    <div style={{marginTop : "10px"}}>
+                        <h2>
+                <FaTimes onClick={handleTopNav} className={`${isOpen ? styles.sidebarOpen : styles.closeSideBar}`} />
+
+                        </h2>
+                    </div>
+                </div>
                 <small style={{display: 'block', fontSize: '10px', color: '#3b82f6'}}>Receptionist Portal</small>
             </div>
             
@@ -48,6 +77,7 @@ const ReceptionSidebar = () => {
                 </button>
             </div>
         </aside>
+        </div>
     );
 };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./signUp.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -32,7 +32,7 @@ const SignUp = () => {
   const SignUpHandler = async () => {
     // Agar password error hai to submit na hone den
     if (passwordError || !password) {
-      alert("Please enter a valid password first!");
+      toast.error("Please enter a valid password first!");
       return;
     }
 
@@ -44,7 +44,7 @@ const SignUp = () => {
 
     try {
       const res = await axios.post(URL, userObj);
-      alert(res.data.message || "SignUp Successful!");
+      toast.success(res.data.message || "SignUp Successful!");
       console.log(res.data.data.status)
       console.log(res.data)
       console.log(res.data.status)
@@ -56,9 +56,9 @@ const SignUp = () => {
       }
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message || "Server error occurred");
+        toast.error(error.response.data.message || "Server error occurred");
       } else {
-        alert("Error: " + error.message);
+        toast.error("Error: " + error.message);
       }
     } finally {
       setLoading(false);

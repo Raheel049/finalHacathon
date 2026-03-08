@@ -1,5 +1,6 @@
 import express from "express"
 import { signUpHandler, loginHandler, verificationHandler, resetOtp, forgotPassword, changePassword, getCurrentUser } from "../controllers/auth.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const authRoute = express.Router();
 
@@ -15,7 +16,7 @@ authRoute.post("/forgot-password", forgotPassword);
 
 authRoute.post("/change-password", changePassword);
 
-authRoute.get('/me', getCurrentUser);
+authRoute.get('/me', protect, getCurrentUser);
 
-export default authRoute 
+export default authRoute;
 

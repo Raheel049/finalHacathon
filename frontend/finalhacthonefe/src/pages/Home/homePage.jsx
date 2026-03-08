@@ -28,6 +28,7 @@ const HomePage = () => {
             try {
                 const res = await axiosInstance.get('/auth/me');
                 const role = res.data.user.role;
+                console.log("role",res)
                 
                 setUserRole(role);
                 setIsLoggedIn(true);
@@ -84,7 +85,7 @@ const HomePage = () => {
                     {!isLoggedIn ? (
                         <>
                             <Link to="/login" className={styles.loginBtn}>Login</Link>
-                            <Link to="/signup" className={styles.signupBtn}>Join Now</Link>
+                            <Link to="/signUp" className={styles.signupBtn}>Join Now</Link>
                         </>
                     ) : (
                         <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>

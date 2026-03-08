@@ -1,6 +1,7 @@
 import Doctor from "../models/doctor.js";
 import Receptionist from '../models/receptionist.js';
 import bcrypt from "bcrypt"
+import userModel from "../models/userSchema.js";
 
 
 export const addDoctor = async (req, res) => {
@@ -86,10 +87,10 @@ export const getDashboardStats = async (req, res) => {
 
 export const addReceptionist = async (req, res) => {
     try {
-        const { name, email, password, phone, shift } = req.body;
+        const { name, email, phone, shift } = req.body;
 
         // 1. Validation Check
-        if (!name || !email || !password || !phone) {
+        if (!name || !email || !phone) {
             return res.status(400).json({ success: false, message: "Required fields are missing!" });
         }
 
@@ -99,14 +100,9 @@ export const addReceptionist = async (req, res) => {
             return res.status(400).json({ success: false, message: "Receptionist already exists!" });
         }
 
-        // 3. Password Hashing
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
         const newReceptionist = new Receptionist({
             name,
             email,
-            password: hashedPassword,
             phone,
             shift,
             role: 'receptionist' // Auto-assign role
@@ -120,13 +116,12 @@ export const addReceptionist = async (req, res) => {
     }
 };
 
-import User from '../models/userSchema.js';
 
 // 1. Search User by Email
 export const getUserByEmail = async (req, res) => {
     try {
         const { email } = req.query;
-        const user = await User.findOne({ email }).select('name email phone role'); // Sirf zaroori 4 fields
+        const user = await userModel.findOne({ email }).select('name email phone role'); // Sirf zaroori 4 fields
         
         if (!user) {
             return res.status(404).json({ success: false, message: "User not found!" });
@@ -140,9 +135,9 @@ export const getUserByEmail = async (req, res) => {
 // 2. Update User Role
 export const updateUserRole = async (req, res) => {
     try {
-        const { userId, newRole } = req.body;
+        const { userId, newRole, userEmail } = req.body;
         
-        const updatedUser = await User.findByIdAndUpdate(
+        const updatedUser = await userModel.findByIdAndUpdate(
             userId, 
             { role: newRole }, 
             { new: true }

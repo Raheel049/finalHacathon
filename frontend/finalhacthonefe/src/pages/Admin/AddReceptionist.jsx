@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from './AddReceptionist.module.css';
+import toast from 'react-hot-toast';
 
 const AddReceptionist = () => {
     const [formData, setFormData] = useState({
@@ -13,10 +14,10 @@ const AddReceptionist = () => {
         e.preventDefault();
         try {
             const res = await axiosInstance.post('/admin/add-receptionist', formData);
-            alert(res.data.message);
+            toast.success(res.data.message);
             setFormData({ name: '', email: '', password: '', phone: '', shift: 'Morning' });
         } catch (err) {
-            alert(err.response?.data?.message || "Operation failed");
+            toast.error(err.response?.data?.message || "Operation failed");
         }
     };
 

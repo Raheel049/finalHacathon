@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./login.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const API = import.meta.env.VITE_API_URL;
@@ -22,7 +23,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userRole", res.data.role); // Role save karna zaroori hai
 
-      alert(res.data.message || "Login successful");
+      toast.success(res.data.message || "Login successful");
 
       // 2. Role-Based Navigation Logic
       const role = res.data.role; // Backend se role 'Admin', 'Doctor', etc aana chahiye
@@ -41,7 +42,7 @@ const Login = () => {
       }
       
     } catch (error) {
-      alert(error.response?.data?.message || "Error logging in");
+      toast.error(error.response?.data?.message || "Error logging in");
     } finally {
       setLoading(false);
     }
