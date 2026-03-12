@@ -22,7 +22,11 @@ import HomePage from "./pages/Home/homePage";
 import Analytics from "./pages/Admin/Analytics";
 import Subscription from "./pages/Admin/Subscription";
 import SystemUsage from "./pages/Admin/Usage";
-import { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
+import PatientAppointmentManager from "./pages/Receptionist/PatientAppointmentManager";
+import AddDoctorManager from "./pages/Admin/AddDoctorManager";
+import PatientList from "./pages/Receptionist/PatientList";
+
 
 const App = () => {
   return (
@@ -48,11 +52,12 @@ const App = () => {
 
           <Route path="/Admin/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/Doctor/Doctors" element={<Doctors />} />
-          <Route path="/Admin/AddDoctor" element={<AddDoctor />} />
+          <Route path="/Admin/AddDoctorManager" element={<AddDoctorManager />} />
           <Route path="/Admin/UserManagement" element={<UserManagement />} />
           <Route path="/Admin/Analytics" element={<Analytics />} />
           <Route path="/Admin/Subscription" element={<Subscription />} />
           <Route path="/Admin/Usage" element={<SystemUsage />} />
+          
 
         </Route>
 
@@ -62,6 +67,8 @@ const App = () => {
             element={<ReceptionDashboard />}
           />
           <Route path="/Receptionist/AddPatient" element={<AddPatient />} />
+          <Route path="/Receptionist/PatientAppointmentManager" element={<PatientAppointmentManager />} />
+          <Route path="/Receptionist/PatientList" element={<PatientList />} />
         </Route>
 
         <Route element={<PatientLayout />}>

@@ -52,19 +52,31 @@
     color: #64748b;
     font-weight: 500;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    
 }
 
 .link:hover {
-    background: #f1f5f9;
-    color: #1e293b;
+    background: #ebf4ee;
+    color: #8cebc0;
+    transform: translateX(8px);
 }
 
 .activeLink {
-    background: #eff6ff !important;
-    color: #2563eb !important;
-    font-weight: 600;
+    background: #2563eb;
+    color: #eff6ff;
+    font-weight: 700;
+    border-radius: 20px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: flex;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+    transform: scale(1.02);
+
 }
+
 
 .footer {
     padding: 20px;

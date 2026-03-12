@@ -21,13 +21,13 @@ const ReceptionDashboard = () => {
                     <p>Register a new patient into the system</p>
                 </div>
                 
-                <div className={styles.actionCard} onClick={() => navigate('/reception/appointments')}>
+                <div className={styles.actionCard} onClick={() => navigate('/Receptionist/PatientAppointmentManager')}>
                     <CalendarDays size={40} color="#3b82f6" />
                     <h3>Book Appointment</h3>
                     <p>Schedule a doctor's visit for a patient</p>
                 </div>
 
-                <div className={styles.actionCard}>
+                <div className={styles.actionCard} onClick={() => navigate('/Receptionist/PatientList')}>
                     <Users size={40} color="#6366f1" />
                     <h3>Patients List</h3>
                     <p>View and manage all registered patients</p>

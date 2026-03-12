@@ -22,12 +22,16 @@ const RoleUpdate = ({ user, onBack, onSuccess }) => {
         }
     };
 
+    console.log(user)
+
+
+
     return (
         <div className={styles.formCard}>
             <div className={styles.userDetails}>
                 <p><strong>Full Name:</strong> {user.name}</p>
                 <p><strong>Email ID:</strong> {user.email}</p>
-                <p><strong>Contact No:</strong> {user.phone || 'Not Provided'}</p>
+                <p><strong>Contact No:</strong> {user.phoneNumber}</p>
                 <p><strong>Current Access:</strong> <span className={styles.badge}>{user.role}</span></p>
             </div>
 

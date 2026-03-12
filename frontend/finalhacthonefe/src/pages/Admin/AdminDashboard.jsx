@@ -14,7 +14,7 @@ const AdminDashboard = () => {
                 setStats(res.data.data);
                 setLoading(false);
             } catch (err) {
-                toast.erroe("Dashboard API Error:", err);
+                toast.error("Dashboard API Error:", err);
                 setLoading(false);
             }
         };

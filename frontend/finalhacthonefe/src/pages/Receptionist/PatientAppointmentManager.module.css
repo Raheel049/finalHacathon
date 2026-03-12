@@ -1,0 +1,25 @@
+.pageWrapper {
+    min-height: 100vh;
+    padding: 40px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    /* margin-left: 260px;  */
+    transition: all 0.3s ease;
+  }
+  
+  .header { text-align: center; margin-bottom: 30px; }
+  .title { color: #2e7d32; font-size: 32px; font-weight: 800; margin-bottom: 10px; }
+  .header p { color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  
+  /* --- RESPONSIVE --- */
+  @media (max-width: 1024px) {
+    .pageWrapper {
+      margin-left: 0 !important; /* Mobile/Tablet par sidebar hategi to margin 0 */
+      padding: 20px;
+      padding-top: 80px; /* Topbar ke liye space */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .title { font-size: 24px; }
+    .pageWrapper { padding: 15px; padding-top: 70px; }
+  }

@@ -1,129 +1,118 @@
-/* Custom Fonts and Smooth Scrolling */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-.login-container {
+.loginContainer {
   min-height: 100vh;
-  /* Dark matching background gradient */
-  background: radial-gradient(circle at center,  #0d140f  0%, #18154a 100%);
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  padding: 20px;
 }
 
-/* Page Load Animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.login-box {
-  background: rgba(117, 215, 158, 0.05); /* Glassmorphism effect */
-  backdrop-filter: blur(10px);
-  padding: 40px 30px;
-  width: 380px;
-  border-radius: 15px;
-  border: 1px solid rgb(21, 41, 20);
-  transform: scale(1.02);
-  box-shadow: 0 5px 15px rgb(103, 225, 103);
-  animation: fadeInUp 0.8s ease-out; /* Entry animation */
-}
-
-.login-box h2 {
+.glassBox {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 50px 40px;
+  border-radius: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
   text-align: center;
-  color: #4caf50; /* Light green for contrast */
-  margin-bottom: 30px;
-  font-weight: 600;
-  letter-spacing: 1px;
 }
 
-.field {
-  position: relative;
-  margin-bottom: 25px;
+.title {
+  color: #2e7d32; /* Clinical Green */
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 5px;
+  letter-spacing: -0.5px;
 }
 
-.field input {
-  width: 100%;
-  padding: 12px 15px;
-  font-size: 15px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  outline: none;
-  color: #fff;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-/* Input Focus Glow */
-.field input:focus {
-  border-color: #4caf50;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
-}
-
-.field label {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  color: #bbb;
+.subtitle {
+  color: #64748b;
   font-size: 14px;
-  transform: translateY(-50%);
-  background: transparent;
-  transition: 0.3s ease;
-  pointer-events: none;
+  margin-bottom: 35px;
 }
 
-/* Floating Label Logic */
-.field input:focus + label,
-.field input:not(:placeholder-shown) + label {
-  top: -12px;
-  left: 10px;
-  font-size: 12px;
-  color: #e4e7e0; /* Parrot green label */
-  font-weight: bold;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-button {
-  margin-top: 15px;
+.glassInput {
   width: 100%;
-  padding: 14px;
-  background: #1b5e20; /* Dark Green */
-  color: #fff;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+  color: #334155;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassInput:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 15px;
+  background: #2e7d32;
+  color: white;
   border: none;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 12px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 5px;
 }
 
-button:hover:not(:disabled) {
-  border: 1px solid #76ff03; /* Parrot Color (Bright Neon) */
-  color: #fffbfb; /* Contrast text for parrot color */
-  transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(115, 192, 53, 0.4);
+.submitBtn:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
 }
 
-button:active {
-  transform: scale(0.98);
-}
-
-button:disabled {
-  opacity: 0.5;
+.submitBtn:disabled {
+  background: #94a3b8;
   cursor: not-allowed;
+  transform: none;
+}
+
+.authLinks {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color 0.3s;
+}
+
+.link span {
+  color: #2e7d32;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #1e293b;
+}
+
+/* Responsive fixes */
+@media (max-width: 480px) {
+  .glassBox {
+    padding: 35px 25px;
+    border-radius: 20px;
+  }
 }

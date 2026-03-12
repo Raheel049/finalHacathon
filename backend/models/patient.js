@@ -22,7 +22,8 @@ const patientSchema = new mongoose.Schema({
     email: {
         type: String,
         lowercase: true,
-        trim: true
+        trim: true,
+        unique : true
     },
     bloodGroup: { 
         type: String,
@@ -38,3 +39,5 @@ const patientSchema = new mongoose.Schema({
 
 const Patient = mongoose.model('Patient', patientSchema);
 export default Patient;
+
+

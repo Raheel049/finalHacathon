@@ -1,5 +1,5 @@
 import express from 'express';
-import { addDoctor, addReceptionist, getDashboardStats, getUserByEmail, updateUserRole } from '../controllers/adminController.js';
+import { addDoctor, addReceptionist, deletePatient, getAllPatients, getDashboardStats, getUserByEmail, searchDoctor, updateUserRole } from '../controllers/adminController.js';
 // import { verifyAdmin } from '../middleware/auth.js'; // Future security ke liye
 
 const router = express.Router();
@@ -14,5 +14,11 @@ router.post("/add-receptionist", addReceptionist);
 router.get('/search-user', getUserByEmail);
 
 router.patch('/update-role', updateUserRole);
+
+router.get("/search-doctor", searchDoctor);
+
+router.get("/all-patients", getAllPatients);
+
+router.post("/delete-patient", deletePatient);
 
 export default router;

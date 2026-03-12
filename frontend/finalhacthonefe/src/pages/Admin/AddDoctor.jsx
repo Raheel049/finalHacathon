@@ -1,24 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from './AddDoctor.module.css';
 import toast from 'react-hot-toast';
 
-const AddDoctor = () => {
+const AddDoctor = ({ user, onSuccess, onBack }) => {
+    // 1. Initial State ko properly define karein
     const [formData, setFormData] = useState({
-        name: '', email: '', phone: '', specialization: '', gender: 'Male', experience: ''
+        name: '',
+        email: '',
+        phoneNumber: '',
+        specialization: '',
+        gender: 'Male',
+        experience: ''
     });
 
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+    // 2. Jab 'user' prop change ho, toh formData ko update karein
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                name: user.name || '',
+                email: user.email || '',
+                phoneNumber: user.phoneNumber || '', // user object mein phoneNumber hai toh wahi use karein
+                specialization: '',
+                gender: 'Male',
+                experience: ''
+            });
+        }
+    }, [user]);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Ab formData mein email aur baqi details sahi hongi
             const res = await axiosInstance.post('/admin/add-doctor', formData);
             toast.success(res.data.message);
+            
+            // Form clear karein
             setFormData({
-                name: '', email: '', phone: '', specialization: '', gender: 'Male', experience: ''
+                name: '', email: '', phoneNumber: '', specialization: '', gender: 'Male', experience: ''
             });
-            // Form clear ya redirect karein
+            
+            if (onSuccess) onSuccess();
         } catch (err) {
             toast.error(err.response?.data?.message || "Something went wrong");
         }
@@ -30,15 +56,33 @@ const AddDoctor = () => {
             <form onSubmit={handleSubmit} className={styles.gridForm}>
                 <div className={styles.inputGroup}>
                     <label>Full Name</label>
-                    <input type="text" name="name" value={formData.name} required onChange={handleChange} placeholder="Dr. Ayesha Khan" />
+                    {/* 3. value hamesha formData se connect rakhein */}
+                    <input 
+                        type="text" 
+                        name="name" 
+                        value={formData.name} 
+                        onChange={handleChange} 
+                        required 
+                    />
                 </div>
                 <div className={styles.inputGroup}>
                     <label>Email Address</label>
-                    <input type="email" name="email" value={formData.email} required onChange={handleChange} placeholder="ayesha@clinic.com" />
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={handleChange} 
+                        required 
+                    />
                 </div>
                 <div className={styles.inputGroup}>
                     <label>Phone Number</label>
-                    <input type="text" name="phone" value={formData.phone} required onChange={handleChange} placeholder="+92 3xx xxxxxxx" />
+                    <input 
+                        type="text" 
+                        name="phoneNumber" 
+                        value={formData.phoneNumber} 
+                        onChange={handleChange} 
+                    />
                 </div>
                 <div className={styles.inputGroup}>
                     <label>Specialization</label>
@@ -51,7 +95,14 @@ const AddDoctor = () => {
                 </div>
                 <div className={styles.inputGroup}>
                     <label>Experience (Years)</label>
-                    <input type="number" name="experience" value={formData.experience} onChange={handleChange} placeholder="5" />
+                    <input 
+                        type="number" 
+                        name="experience" 
+                        value={formData.experience} 
+                        onChange={handleChange} 
+                        placeholder="5" 
+                        required
+                    />
                 </div>
                 <div className={styles.inputGroup}>
                     <label>Gender</label>
@@ -60,7 +111,10 @@ const AddDoctor = () => {
                         <option value="Female">Female</option>
                     </select>
                 </div>
-                <button type="submit" className={styles.submitBtn}>Add Doctor to System</button>
+                <div className={styles.buttonGroup}>
+                    <button type="submit" className={styles.submitBtn}>Add Doctor to System</button>
+                    <button onClick={onBack} type='button' className={styles.backBtn}>Back</button>
+                </div>
             </form>
         </div>
     );

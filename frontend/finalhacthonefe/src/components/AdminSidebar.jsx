@@ -28,7 +28,7 @@ const Sidebar = () => {
     },
     {
       name: "Manage Doctor",
-      path: "/Admin/AddDoctor",
+      path: "/Admin/AddDoctorManager",
       icon: <UserRound size={20} />,
     },
     {

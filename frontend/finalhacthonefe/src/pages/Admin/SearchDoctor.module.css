@@ -1,0 +1,155 @@
+.searchContainer {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #eef2f6;
+}
+
+.headerSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    color: #1a202c;
+}
+
+.headerSection h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.icon {
+    color: #3b82f6;
+}
+
+.description {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.searchBox {
+    display: flex;
+    gap: 10px;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.searchInput:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.searchBtn:hover {
+    background-color: #2563eb;
+}
+
+.searchBtn:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Spinner Animation */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .searchBox {
+        flex-direction: column;
+    }
+    .searchBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width : 900px){
+    .searchBox {
+        flex-direction: column; /* Mobile par input upar button niche */
+    }
+
+    .searchBtn {
+        width: 100%; /* Full width button on mobile */
+        padding: 16px; /* Bada touch target */
+    }
+}
+
+@media (max-width: 768px) {
+    .searchContainer {
+        padding: 1.5rem;
+        margin: 10px;
+    }
+
+    .searchBox {
+        flex-direction: column; /* Mobile par input upar button niche */
+    }
+
+    .searchBtn {
+        width: 100%; /* Full width button on mobile */
+        padding: 16px; /* Bada touch target */
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 550px) {
+    .headerSection h2 {
+        font-size: 1.2rem;
+    }
+
+    .searchBox {
+        flex-direction: column; /* Mobile par input upar button niche */
+    }
+
+    .searchBtn {
+        width: 100%; /* Full width button on mobile */
+        padding: 16px; /* Bada touch target */
+    }
+
+    .description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Spinner Animation */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

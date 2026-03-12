@@ -11,8 +11,8 @@
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     margin: 20px auto;
-    margin-left: 260px; /* Sidebar space */
-    width: calc(100% - 280px); /* 260px sidebar + 20px extra gap */
+    /* margin-left: 260px;  */
+    /* width: calc(100% - 280px);  */
     animation: fadeIn 0.5s ease-in;
     transition: all 0.3s ease;
 }
@@ -57,26 +57,39 @@
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.submitBtn {
-    grid-column: span 2; /* Desktop pe full width */
+.buttonGroup {
+    grid-column: 1 / span 2; /* Ye button ko dono columns ki jagah de dega */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Buttons ek ke niche ek lane ke liye */
+    gap: 10px;
+    align-items: center; /* Center mein alignment ke liye */
+  }
+
+.submitBtn, .backBtn {
+
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
     padding: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     font-weight: 700;
     cursor: pointer;
     margin-top: 10px;
     transition: 0.3s;
+    width: 100%;
+    /* margin: 0 auto; */
+   
 }
 
+ 
 /* --- RESPONSIVE QUERIES --- */
 
 /* 1. Tablets (1024px se niche) */
 @media (max-width: 1024px) {
     .formContainer {
-        margin-left: 260px;
-        width: calc(100% - 280px);
+        /* margin-left: 260px; */
+        /* width: calc(100% - 280px); */
         padding: 25px;
     }
 }
@@ -97,7 +110,7 @@
     }
 
     .submitBtn {
-        grid-column: span 1; /* Mobile pe single column span */
+         /* Mobile pe single column span */
         padding: 12px;
     }
 
