@@ -26,7 +26,10 @@ import { Toaster } from "react-hot-toast";
 import PatientAppointmentManager from "./pages/Receptionist/PatientAppointmentManager";
 import AddDoctorManager from "./pages/Admin/AddDoctorManager";
 import PatientList from "./pages/Receptionist/PatientList";
-
+import SuperAdmin from "./pages/SuperAdmin/SuperAdminDashboard";
+import RegisterHospital from "./pages/SuperAdmin/RegisterHospitals";
+import SuperAdminLayout from "./components/SuperAdminLayout";
+import Owners from "./pages/SuperAdmin/Owners";
 
 const App = () => {
   return (
@@ -47,6 +50,15 @@ const App = () => {
 
       {/* --- PRIVATE ROUTES (With Sidebar Layout) --- */}
       <Route element={<PrivateRoute />}>
+
+
+        <Route element={<SuperAdminLayout />}>
+        <Route path="/SuperAdmin/SuperAdminDashboard" element={<SuperAdmin />} />
+        <Route path="/SuperAdmin/RegisterHospitals" element={<RegisterHospital />} />
+        <Route path="/SuperAdmin/Owners" element={<Owners />} />
+          
+        </Route>
+
         <Route element={<AdminLayout />}>
           {/* Default redirect after login */}
 

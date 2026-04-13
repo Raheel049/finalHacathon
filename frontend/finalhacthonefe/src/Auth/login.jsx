@@ -24,13 +24,18 @@ const Login = () => {
       toast.success(res.data.message || "Welcome back!");
 
       const role = res.data.role;
+      console.log(res,"res");
+     
 
       // Role-Based Redirection
       if (role === "Admin") navigate("/Admin/AdminDashboard");
       else if (role === "Doctor") navigate("/Doctor/Doctors");
       else if (role === "Receptionist") navigate("/Receptionist/ReceptionDashboard");
       else if (role === "Patient") navigate("/Patient/Dashboard");
+      else if(role === "SuperAdmin") navigate("/SuperAdmin/SuperAdminDashboard");
       else navigate("/");
+
+
       
     } catch (error) {
       toast.error(error.response?.data?.message || "Invalid credentials");

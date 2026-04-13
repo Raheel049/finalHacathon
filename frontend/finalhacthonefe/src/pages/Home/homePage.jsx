@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
 import styles from "./homePage.module.css";
 import { Activity, ShieldCheck, Users, ArrowRight } from 'lucide-react';
+import SuperAdmin from '../SuperAdmin/SuperAdminDashboard';
 
 const HomePage = () => {
     const [userRole, setUserRole] = useState("User");
@@ -38,7 +39,8 @@ const HomePage = () => {
                     Admin: "/Admin/AdminDashboard",
                     Doctor: "/Doctor/Doctors",
                     Receptionist: "/Receptionist/ReceptionDashboard",
-                    Patient: "/Patient/Dashboard"
+                    Patient: "/Patient/Dashboard",
+                    SuperAdmin : "/SuperAdmin/SuperAdminDashboard"
                 };
 
                 // Agar role valid hai to direct navigate kar jao

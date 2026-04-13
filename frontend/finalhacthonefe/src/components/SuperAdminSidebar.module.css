@@ -1,0 +1,240 @@
+/* 1. Main Sidebar Container */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background: #1e293b; /* Premium Dark Navy */
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Logo Section */
+.logo {
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.iconBox {
+  background: #3b82f6; /* Super Admin Blue */
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 22px;
+  color: white;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logoText span {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.logoText small {
+  font-size: 10px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* 3. Navigation Links */
+.nav {
+  flex: 1;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #94a3b8;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.activeLink {
+  background: #3b82f6 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* 4. Footer & Logout */
+.footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logoutBtn {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* --- RESPONSIVE LOGIC --- */
+
+/* Mobile Toggle Button (Normal hidden) */
+.sidebarToggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  /* z-index: 1100; */
+  background: #3b82f6;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mobileCloseIcon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebarToggle {
+    display: flex;
+  }
+
+  .sidebar {
+    left: -280px; /* Hidden by default on mobile */
+    width: 260px;
+  }
+
+  /* Active Sidebar State (Jab JS se toggle ho) */
+  .activeSidebar {
+    left: 0 !important;
+  }
+
+  .mobileCloseIcon {
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 20px;
+    color: #94a3b8;
+  }
+
+  /* Overlay Background */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .showOverlay {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Desktop Par TopNav Chupa Do --- */
+.topNavbar {
+  display: none;
+}
+
+/* --- Mobile Responsive (768px) --- */
+@media (max-width: 768px) {
+  .topNavbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background: #ffffff;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .menuIcon {
+    font-size: 24px;
+    color: #1e293b;
+    cursor: pointer;
+  }
+
+  .mobileLogo {
+    font-weight: 800;
+    font-size: 18px;
+    color: #1e293b;
+  }
+
+  .mobileLogo span {
+    color: #3b82f6;
+  }
+
+  .mobileIcons {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    color: #64748b;
+  }
+
+  /* Sidebar Toggle Button jo pehle banaya tha usay hide kar do kyunke ab Hamburger hai */
+  .sidebarToggle {
+    display: none !important;
+  }
+
+  .sidebar {
+    left: -280px;
+    padding-top: 10px; /* Logo already sidebar mein hai */
+  }
+}

@@ -6,6 +6,7 @@ import authRoute from "./routes/authRoutes.js";
 import cors from "cors"
 import router from "./routes/adminRoutes.js";
 import recpRouter from "./routes/receptionRoutes.js";
+import supAdminRouter from "./routes/superAdminRoutes.js";
 
 
 const app = express()
@@ -19,6 +20,7 @@ dbConnect();
 app.use("/api/auth",authRoute);
 app.use("/api/admin", router);
 app.use("/api/reception", recpRouter);
+app.use("/api/super-admin",supAdminRouter);
 // app.use("/api/student",studentDashboardRoutes);
 
 app.post("/apitest", (request, response) => {

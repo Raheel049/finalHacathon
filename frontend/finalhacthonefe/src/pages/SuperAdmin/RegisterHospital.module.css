@@ -1,0 +1,132 @@
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    margin: 20px auto;
+  }
+  
+  .formHeader {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+  
+  .formHeader h2 {
+    color: #1e293b;
+    margin-bottom: 5px;
+  }
+  
+  .formHeader p {
+    color: #64748b;
+    font-size: 14px;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Desktop par side-by-side */
+    gap: 40px;
+  }
+  
+  .section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: #3b82f6;
+    margin-bottom: 20px;
+  }
+  
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 5px;
+  }
+  
+  .inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+  }
+  
+  .inputWrapper input, .inputGroup input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .inputGroup input:not(.inputWrapper input) {
+      padding: 10px 12px; /* Jiske sath icon nahi hai uska padding adjust */
+  }
+  
+  .inputWrapper input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .inputWrapperField1 input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .submitBtn {
+    grid-column: span 2; /* Full width button */
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+  }
+  
+  .selectField {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Icon ke liye space */
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    appearance: none; /* Default arrow hatane ke liye agar zarurat ho */
+    cursor: pointer;
+    outline: none;
+    font-size: 14px;
+    color: #1e293b;
+  }
+  
+  .selectField:focus {
+    border-color: #3b82f6;
+  } 
+
+  .submitBtn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+  }
+  
+  /* --- Mobile Responsive --- */
+  @media (max-width: 768px) {
+    .formGrid {
+      grid-template-columns: 1fr; /* Mobile par upar niche */
+    }
+    .submitBtn {
+      grid-column: span 1;
+    }
+  }

@@ -1,0 +1,138 @@
+.mainContainer {
+    width: 100%;
+    background-color: #E6E9F0; /* Professional Off-White color */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.statusCards {
+    display: flex;
+    justify-content: space-between; /* Space around se behtar hai dashboard ke liye */
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Common Styling for all Icons */
+.cardIconUsers, .cardIconUserCheck, .cardIconUserMinus, .cardIconUserX {
+    font-size: 20px;
+    height: 40px; /* Thora bada box */
+    width: 40px;
+    padding: 8px;
+    border-radius: 8px; /* Rounded corners like the image */
+    
+}
+
+/* Individual Colors for Icons */
+.cardIconUsers {
+    background-color: #eff6ff; /* Very Light Blue */
+    color: #1e40af; /* Deep Blue */
+}
+
+.cardIconUserCheck {
+    background-color: #f0fdf4; /* Very Light Green */
+    color: #166534;
+}
+
+.cardIconUserMinus {
+    background-color: #fff7ed; /* Very Light Orange */
+    color: #9a3412;
+}
+
+.cardIconUserX {
+    background-color: #fef2f2; /* Very Light Red */
+    color: #991b1b;
+}
+
+.sectionTwo {
+    width: 100%;
+    height: 100px;
+    margin: 20px 0px;
+    border: 2px solid green;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sectionTwo input{
+    width: 100%;
+    padding-left: 20px;
+    height: 35px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid white;
+
+
+}
+
+.searchBarContainer{
+    /* display: flex; */
+    /* border: 1px solid red; */
+    width: 40%;
+
+}
+
+.searchBarContainer label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.searchBar{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+.searchIcon{
+    position: absolute;
+    color : #64748b;
+    font-size: 13px;
+    top: 10px;
+    left: 5px;
+
+
+}
+
+.searchBar input:focus {
+    border-color: #3b82f6; /* Blue border on click */
+  }
+
+.filterAll {
+    display: flex;
+    flex-direction: column;
+    /* gap: 8px; */
+    width: 40%;
+  }
+  
+  .filterAll label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+
+  }
+  
+  .filterSelect {
+    /* padding: 10px 15px; */
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    color: #1e293b;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    height: 35px;
+  }
+  
+  .filterSelect:focus {
+    border-color: #3b82f6;
+  }
+
+.addOwnerBtn{
+    width: 10%;
+    height: 40px;
+}

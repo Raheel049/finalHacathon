@@ -1,0 +1,63 @@
+.layoutWrapper {
+    min-height: 100vh;
+    background-color: #f1f5f9; /* Light grey background for professional look */
+  }
+  
+  /* Mobile Header Logic */
+  .mobileHeader {
+    display: none; /* Desktop par hide */
+    height: 60px;
+    background: white;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mobileLogo {
+    font-weight: 800;
+    font-size: 18px;
+    color: #1e293b;
+  }
+  
+  .mobileLogo span {
+    color: #3b82f6;
+  }
+  
+  .headerIcons {
+    display: flex;
+    gap: 15px;
+    color: #64748b;
+  }
+  
+  /* Main Content Area */
+  .mainContent {
+    margin-left: 280px; /* Sidebar ki width ke barabar margin */
+    /* padding: 30px; */
+    transition: all 0.4s ease;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* --- Responsive Logic --- */
+  
+  @media (max-width: 768px) {
+    .mobileHeader {
+      display: flex; /* Mobile par show */
+    }
+  
+    .mainContent {
+      margin-left: 0; /* Mobile par margin khatam */
+      padding-top: 80px; /* Top header ki wajah se padding */
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
