@@ -1,3 +1,4 @@
+import { response } from "express";
 import hospitalOwnerModel from "../models/SuperAdminModels/hospitalOwnerSchema.js";
 import bcrypt from "bcrypt"; // Password security ke liye
 
@@ -62,3 +63,22 @@ export const registerHospital = async (request, response) => {
     });
   }
 };
+
+export const fetchAllOwners = async (request, response) => {
+  try {
+    const allUsers = await hospitalOwnerModel.find()
+    console.log("users", allUsers);
+    
+    response.status(200).json({
+      message : "All Data found",
+      data : allUsers,
+      status : true
+    })
+  } catch (error) {
+    response.status(500).json({
+      message : error.message || "internal server error",
+      status : false,
+      data : null
+    })
+  }
+}

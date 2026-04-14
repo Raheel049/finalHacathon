@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StatusCard from "../../components/sameComponent/StatusCard";
 import styles from "./Owner.module.css";
 import {
@@ -7,9 +7,44 @@ import {
   LuUserMinus,
   LuUserX,
   LuSearch,
+  LuPencilLine,
+  LuEye,
+  LuBan,
 } from "react-icons/lu";
+import toast from "react-hot-toast";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Owners = () => {
+  const [allOwners, setAllOwners] = useState([]);
+  const [loding, setLoading] = useState(false);
+
+  const allUsers = async () => {
+    try {
+      setLoading(true);
+      const res = await axiosInstance.get("/super-admin/fetch-all-owners")
+      console.log(res.data.data);
+      setAllOwners(res.data.data);
+      if (res.data.status === true || res.status === 200)
+        toast.success(res.data.message || "All Owners Founded");
+      setLoading(false);
+    } catch (error) {
+      const errMsg = error.res?.data?.message || "some thing went wrong";
+      toast.error(errMsg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEdit = (id) => {
+    console.log(id)
+  }
+
+  console.log("owners", allOwners);
+
+  useEffect(() => {
+    allUsers();
+  }, []);
+
   return (
     <div className={styles.mainContainer}>
       <main>
@@ -56,6 +91,7 @@ const Owners = () => {
                 <input
                   type="text"
                   placeholder="Search Owners,name,email,hospital..."
+                  
                 />
               </div>
             </div>
@@ -69,8 +105,56 @@ const Owners = () => {
               </select>
             </div>
             <div className={styles.addOwnerBtn}>
-              <button>Button text</button>
+              <button>Add Owner</button>
             </div>
+          </div>
+        </section>
+
+        <section>
+          <div className={styles.section3}>
+            <div className={styles.ownerDetailsHeading}>
+              <h5>S/No</h5>
+              <p>Name/Email</p>
+              <p>Assignd Hospital</p>
+              <p>Subscription plane</p>
+              <p>Status</p>
+              <span>Action</span>
+            </div>
+
+            {loding ? (
+              <p>Loading...</p>
+            ) : (
+              <div>
+                {allOwners.map((owner, index) => (
+                  <div className={styles.ownerDetails} key={owner._id}>
+                    <h5>{index+1}</h5>
+                    <p>
+                      {owner.ownerName}
+                      <span className={styles.email}>
+                        {owner.ownerEmail}
+                      </span>
+                    </p>
+                    <p>{owner.hospitalName}</p>
+                    <p>{owner.plane}</p>
+                    <p>{owner.status}</p>
+                    <span>
+                      <button onClick={() => {handleEdit(owner._id)}}>
+                        <LuPencilLine className={styles.editIcon} />
+                        Edit
+                      </button>
+                      <button>
+                        <LuEye className={styles.viewIcon} />
+                        view
+                      </button>
+                      <button>
+                        <LuBan className={styles.blockIcon} />
+                        Block
+                      </button>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

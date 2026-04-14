@@ -47,13 +47,18 @@
 
 .sectionTwo {
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     margin: 20px 0px;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     display: flex;
     gap: 20px;
     justify-content: space-between;
     align-items: center;
+    background-color: #cfdae7;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 10px 20px rgba(247, 249, 250, 0.1); /* Shadow thori gehri ho jayegi */
+
 }
 
 .sectionTwo input{
@@ -64,6 +69,12 @@
     outline: none;
     border: 1px solid white;
 
+
+}
+
+.sectionTwo input:hover{
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 
 }
 
@@ -134,5 +145,130 @@
 
 .addOwnerBtn{
     width: 10%;
-    height: 40px;
+    height: 35px;
+    margin-top: 10px;
+   
+}
+
+.addOwnerBtn button{
+    background-color: #3b82f6;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #e2e8f0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/* section 3 */
+
+
+.section3{
+    min-height: 100px;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.ownerDetailsHeading{
+    display: flex;
+    justify-content: space-around;
+    height: 30px;
+    background-color: #4f5b6d;
+    padding: 5px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.ownerDetailsHeading span{
+    width: 30%;
+    color: white;
+}
+
+.ownerDetailsHeading p{
+    width: 15%;
+    color: white;
+    /* border: 1px solid green ; */
+}
+
+.ownerDetailsHeading h5{
+    width: 5%;
+    color: white;
+}
+
+
+.ownerDetails{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: #1e293b;
+    padding: 5px;
+}
+
+.ownerDetails span{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ownerDetails .editIcon{
+    color: #166534;
+
+}
+.ownerDetails .viewIcon{
+    color: #3b82f6;
+
+}
+.ownerDetails .blockIcon{
+    color: #991b1b;
+
+}
+
+.ownerDetails p{
+    width: 15%;
+    color: white;
+    /* border: 1px solid green ; */
+}
+
+.ownerDetails h5{
+    width: 5%;
+    color: white;
+}
+
+.ownerDetails .email{
+    font-size: 0.7rem;
+}
+
+.ownerDetails button{
+    color: black;
+    background-color: #e6ebf0;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+@media (max-width : 1000px){
+    .sectionTwo{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .sectionTwo input{
+        width: 100%;
+    }
+
+    .filterAll{
+        width: 80%;
+    }
+
+    .searchBarContainer{
+        width: 80%;
+    }
+
+    .addOwnerBtn button{
+        width: 80%;
+    }
 }
