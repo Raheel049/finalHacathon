@@ -82,3 +82,34 @@ export const fetchAllOwners = async (request, response) => {
     })
   }
 }
+
+export const getOwnerStats = async(request, response) => {
+  try {
+    const [totalOwners, active, inactive, blocked] = await Promise.all([
+      hospitalOwnerModel.countDocuments(),
+      hospitalOwnerModel.countDocuments({status : "active"}),
+      hospitalOwnerModel.countDocuments({status : "inactive"}),
+      hospitalOwnerModel.countDocuments({status : "blocked"})
+    ]) 
+
+    const ownerStates = {
+      totalOwners,
+      active,
+      inactive,
+      blocked
+    }
+
+    console.log(totalOwners)
+    response.status(200).json({
+      message : "Total Owners Found Successfully!",
+      status : true,
+      data : ownerStates
+    })
+  } catch (error) {
+    response.status(500).json({
+      message : error.message || "Internal server error!",
+      status : false,
+      data : null
+    })
+  }
+}

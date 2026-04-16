@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import StatusCard from "../../components/sameComponent/StatusCard";
 import styles from "./Owner.module.css";
 import {
@@ -13,37 +13,77 @@ import {
 } from "react-icons/lu";
 import toast from "react-hot-toast";
 import axiosInstance from "../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 const Owners = () => {
   const [allOwners, setAllOwners] = useState([]);
-  const [loding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
+  const [totalOwners, setTotalOwners] = useState("");
+
+  const navigate = useNavigate();
 
   const allUsers = async () => {
     try {
       setLoading(true);
-      const res = await axiosInstance.get("/super-admin/fetch-all-owners")
+      const res = await axiosInstance.get("/super-admin/fetch-all-owners");
       console.log(res.data.data);
       setAllOwners(res.data.data);
       if (res.data.status === true || res.status === 200)
-        toast.success(res.data.message || "All Owners Founded");
+        console.log(res.data.message || "All Owners Founded");
       setLoading(false);
     } catch (error) {
-      const errMsg = error.res?.data?.message || "some thing went wrong";
+      const errMsg = error.response?.data?.message || "some thing went wrong";
       toast.error(errMsg);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleEdit = (id) => {
-    console.log(id)
+  const totalOwners = () => {
+    try {
+      const res = axiosInstance.get("/super-admin/owner-stats");
+    } catch (error) {
+      message : error.message || ""
+    }
   }
 
-  console.log("owners", allOwners);
+  var filteredOwners = useMemo(() => {
+    const searchLower = searchItem.toLowerCase();
+    const selectedItemLower = selectedItem.toLowerCase();
+
+    return allOwners.filter((owner) => {
+    const matchesSearchLower =
+      owner.OwnerName?.toLowerCase().includes(searchLower) ||
+      owner.ownerEmail?.toLowerCase().includes(searchLower) ||
+      owner.hospitalName?.toLowerCase().includes(searchLower);
+
+    const matchesSelectedLower =
+      selectedItemLower === "" || 
+      selectedItemLower === "all" ||
+      owner.plane?.toLowerCase() === selectedItemLower ||
+      owner.status?.toLowerCase() === selectedItemLower;
+
+    // console.log(searchItem)
+    return matchesSearchLower && matchesSelectedLower;
+  }); 
+  }, [allOwners, searchItem, selectedItem]);
+    
+
+  const handleEdit = (id) => {
+    console.log(id);
+  };
+
+  // console.log("owners", allOwners);
 
   useEffect(() => {
     allUsers();
   }, []);
+
+  const handleChange = (e) => {
+    setSearchItem(e.target.value);
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -91,21 +131,31 @@ const Owners = () => {
                 <input
                   type="text"
                   placeholder="Search Owners,name,email,hospital..."
-                  
+                  onChange={handleChange}
+                  value={searchItem}
                 />
               </div>
             </div>
             <div className={styles.filterAll}>
               <label htmlFor="statusFilter">Status Filter</label>
-              <select id="statusFilter" className={styles.filterSelect}>
+              <select
+                id="statusFilter"
+                className={styles.filterSelect}
+                onChange={(e) => {
+                  setSelectedItem(e.target.value);
+                }}
+              >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
                 <option value="blocked">Blocked</option>
+                <option value="basic">Basic</option>
+                <option value="enterprise">Enterprise</option>
+                <option value="standard">Standard</option>
               </select>
             </div>
             <div className={styles.addOwnerBtn}>
-              <button>Add Owner</button>
+              <button onClick={() => {navigate("/SuperAdmin/RegisterHospitals")}}>Add Owner</button>
             </div>
           </div>
         </section>
@@ -121,24 +171,26 @@ const Owners = () => {
               <span>Action</span>
             </div>
 
-            {loding ? (
+            {loading ? (
               <p>Loading...</p>
             ) : (
               <div>
-                {allOwners.map((owner, index) => (
+                {filteredOwners.map((owner, index) => (
                   <div className={styles.ownerDetails} key={owner._id}>
-                    <h5>{index+1}</h5>
+                    <h5>{index + 1}</h5>
                     <p>
                       {owner.ownerName}
-                      <span className={styles.email}>
-                        {owner.ownerEmail}
-                      </span>
+                      <span className={styles.email}>{owner.ownerEmail}</span>
                     </p>
                     <p>{owner.hospitalName}</p>
                     <p>{owner.plane}</p>
                     <p>{owner.status}</p>
                     <span>
-                      <button onClick={() => {handleEdit(owner._id)}}>
+                      <button
+                        onClick={() => {
+                          handleEdit(owner._id);
+                        }}
+                      >
                         <LuPencilLine className={styles.editIcon} />
                         Edit
                       </button>

@@ -77,7 +77,21 @@
 }
 
 /* 5. Shining Buttons */
-.updateBtn { background: linear-gradient(135deg, #10b981, #059669); width: 50%; margin: 0 auto; }
+.updateBtn { 
+    /* background: linear-gradient(135deg, #10b981, #059669); 
+     width: 50%;
+      margin: 0 auto; */
+      flex: 1;
+    background: #2563eb;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 600;
+    color: #f0fdf4;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+     }
 
 .updateBtn::after {
     content: '';
@@ -113,6 +127,7 @@
     color: #64748b;
     cursor: pointer;
     width: 100%;
+    text-align: center;
 }
 
 /* 6. Animations */
