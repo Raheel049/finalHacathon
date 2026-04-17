@@ -20,7 +20,9 @@ const Owners = () => {
   const [loading, setLoading] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
-  const [totalOwners, setTotalOwners] = useState("");
+  const [ownerAllCardStats, setOwnerAllCardStats] = useState("");
+  const [updateOwnerFields, setupdateOwnerFields] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
 
   const navigate = useNavigate();
 
@@ -41,13 +43,19 @@ const Owners = () => {
     }
   };
 
-  const totalOwners = () => {
+  const ownerCardsStats = async () => {
     try {
-      const res = axiosInstance.get("/super-admin/owner-stats");
+      const res = await axiosInstance.get("/super-admin/owner-stats");
+      setOwnerAllCardStats(res.data.data)
+    console.log("stats", res.data.data);
+
     } catch (error) {
-      message : error.message || ""
+      console.log("error", error.message || "some thing went wrong");
     }
+
   }
+
+  console.log("allStats",ownerAllCardStats.totalOwners);
 
   var filteredOwners = useMemo(() => {
     const searchLower = searchItem.toLowerCase();
@@ -71,19 +79,104 @@ const Owners = () => {
   }, [allOwners, searchItem, selectedItem]);
     
 
-  const handleEdit = (id) => {
-    console.log(id);
+  const handleEdit = async (id) => {
+    try {
+      const res = await axiosInstance.post(`/super-admin/get-owner-data/${id}`);
+      // console.log(res.data.data)
+      setupdateOwnerFields(res.data.data)
+
+
+      if(res.data.status === 200 || res.data.status === true){
+        toast.success(res.data.message || "owner data found");
+      // console.log("handleEdit", res.data.data)
+
+      setIsOpen(true)
+
+
+
+      }
+      
+    } catch (error) {
+      const errMsg = error.response?.data?.message || "some thing went wrong";
+      toast.error(errMsg);
+    }
   };
+
+
 
   // console.log("owners", allOwners);
 
   useEffect(() => {
     allUsers();
+    ownerCardsStats();
   }, []);
+
+  const handleUpdateChange = (e) => {
+    // setupdateOwnerFields(...updateOwnerFields, [e.target.name] = e.target.value);
+
+    const {name, value} = e.target;
+
+    setupdateOwnerFields((prev) => ({
+      ...prev, [name] : value
+      
+    }))
+
+    // console.log("updatedData",updateOwnerFields)
+
+
+  }
 
   const handleChange = (e) => {
     setSearchItem(e.target.value);
   };
+
+  const closePopup = () => {
+    setIsOpen(false)
+  }
+
+  const handleSave = async ()  => {
+    try {
+      const idToUpgrade = updateOwnerFields._id
+    // console.log("idTOUpdgrrade",idToUpgrade); 
+    const updatedObj = {
+      ownerName : updateOwnerFields.ownerName,
+      hospitalName : updateOwnerFields.hospitalName, 
+      status : updateOwnerFields.status, 
+      plane : updateOwnerFields.plane, 
+
+    }
+    const res = await axiosInstance.patch(`/super-admin/update-owner-data/${idToUpgrade}`,updatedObj);
+    console.log("update res",res)
+
+    if(res.data.status === true || res.data.status === 200){
+    toast.success(res.data.message || "Hospital owner data Updated successfully");
+
+      allUsers();
+    setIsOpen(false);
+    ownerCardsStats()
+
+    }
+    
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const handlDeleteOwner = async (id) => {
+    try {
+      const response = await axiosInstance.delete(`/super-admin/delete-owner/${id}`);
+      console.log("response", response);
+      if(response.data.status === 200 || response.data.status === true){
+        toast.success(response.data.message || "Hospital owner deleted Successfully")
+      allUsers();
+      ownerCardsStats();
+
+      }
+    } catch (error) {
+      toast.error(error.message || "some thing went wrong")
+    }
+  }
 
   return (
     <div className={styles.mainContainer}>
@@ -95,25 +188,25 @@ const Owners = () => {
             <div className={styles.statusCards}>
               <StatusCard
                 title={"Total Owners"}
-                value={"23"}
+                value={`${ownerAllCardStats.totalOwners}`}
                 icon={<LuUsers className={styles.cardIconUsers} />}
                 variant={"redVariant"}
               />
               <StatusCard
                 title={"Active Owners"}
-                value={"13"}
+                value={`${ownerAllCardStats.active}`}
                 icon={<LuUserCheck className={styles.cardIconUserCheck} />}
                 variant={"redVariant"}
               />
               <StatusCard
                 title={"Inactive Owners"}
-                value={"7"}
+                value={`${ownerAllCardStats.inactive}`}
                 icon={<LuUserMinus className={styles.cardIconUserMinus} />}
                 variant={"redVariant"}
               />
               <StatusCard
                 title={"Blocked Owners"}
-                value={"6"}
+                value={`${ownerAllCardStats.blocked}`}
                 icon={<LuUserX className={styles.cardIconUserX} />}
                 variant={"redVariant"}
               />
@@ -161,6 +254,7 @@ const Owners = () => {
         </section>
 
         <section>
+          <div className={styles.tableContainer}>
           <div className={styles.section3}>
             <div className={styles.ownerDetailsHeading}>
               <h5>S/No</h5>
@@ -198,9 +292,9 @@ const Owners = () => {
                         <LuEye className={styles.viewIcon} />
                         view
                       </button>
-                      <button>
+                      <button onClick={() => {handlDeleteOwner(owner._id)}}>
                         <LuBan className={styles.blockIcon} />
-                        Block
+                        Delete
                       </button>
                     </span>
                   </div>
@@ -208,6 +302,31 @@ const Owners = () => {
               </div>
             )}
           </div>
+          </div>
+
+          {isOpen && (<div className={styles.modalOverlay}>
+            <div className={styles.UpdatePopUp}>
+            <h1>Update Owner Fields</h1>
+
+            <input type="text" onChange={handleUpdateChange} value={updateOwnerFields.ownerName} name="ownerName"/>
+            <input type="text" onChange={handleUpdateChange} value={updateOwnerFields.hospitalName} name="hospitalName" />
+            <select name="plane" id="" onChange={handleUpdateChange}>
+              <option value="Basic">Basic</option>
+              <option value="Standrad">Standrad</option>
+              <option value="Enterprise">Enterprise</option>
+            </select>
+            <select name="status" id="" onChange={handleUpdateChange}>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Blocked">Blocked</option>
+            </select>
+
+            <div className={styles.btn}>
+              <button onClick={closePopup}>Close</button>
+              <button onClick={handleSave}>Save</button>
+            </div>
+          </div>
+          </div>) }
         </section>
       </main>
     </div>

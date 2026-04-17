@@ -39,7 +39,7 @@ const hospitalOwner = new mongoose.Schema({
 
     status : {
         type : String,
-        default : "inactive"
+        default : "Inactive"
     }
 
 

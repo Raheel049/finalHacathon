@@ -87,9 +87,9 @@ export const getOwnerStats = async(request, response) => {
   try {
     const [totalOwners, active, inactive, blocked] = await Promise.all([
       hospitalOwnerModel.countDocuments(),
-      hospitalOwnerModel.countDocuments({status : "active"}),
-      hospitalOwnerModel.countDocuments({status : "inactive"}),
-      hospitalOwnerModel.countDocuments({status : "blocked"})
+      hospitalOwnerModel.countDocuments({status : "Active"}),
+      hospitalOwnerModel.countDocuments({status : "Inactive"}),
+      hospitalOwnerModel.countDocuments({status : "Blocked"})
     ]) 
 
     const ownerStates = {
@@ -113,3 +113,69 @@ export const getOwnerStats = async(request, response) => {
     })
   }
 }
+
+export const getOwnerData = async (request, response) => {
+  try {
+
+    const {id} = request.params
+
+    const ownerData = await hospitalOwnerModel.findById(id)
+    console.log(id,"id");
+    response.status(200).json({
+      message : "data fetch successfully!",
+      status : true,
+      data : ownerData
+    })
+  } catch (error) {
+    response.status(500).json({
+      message : "internal server error" || error.message,
+      status : false,
+    
+    })
+  }
+}
+
+  export const updateOwnerData = async (request, response) => {
+    try {
+      const {id} = request.params;
+      const {ownerName, hospitalName, status, plane} = request.body
+
+      if(!ownerName || !hospitalName || !status || !plane){
+        response.status(400).json({
+          message : "Required fields are missing!",
+          status : false
+        })
+      }
+      await hospitalOwnerModel.findByIdAndUpdate(id,{ownerName : ownerName, hospitalName: hospitalName, status: status, plane:plane})
+      
+
+      response.status(200).json({
+        message : "Hospital owner data Updated successfully",
+        status : true
+      })
+    } catch (error) {
+      response.status(500).json({
+        message : error.message || "Internal server error",
+        status : false
+      })
+    }
+  }
+
+  export const deleteOwner = async(request, response) => {
+    try {
+      const {id} = request.params
+      const getOwner = await hospitalOwnerModel.findByIdAndDelete(id)
+
+      
+
+      response.status(200).json({
+        message : "User delete successfully!",
+        status : true
+      })
+    } catch (error) {
+      response.status(500).json({
+        message : error.message || "Internal server error",
+        status : false
+      })
+    }
+  }

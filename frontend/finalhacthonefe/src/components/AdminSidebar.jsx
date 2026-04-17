@@ -32,7 +32,7 @@ const Sidebar = () => {
       icon: <UserRound size={20} />,
     },
     {
-      name: "Add User",
+      name: "Change Role",
       path: "/Admin/UserManagement",
       icon: <Users size={20} />,
     },

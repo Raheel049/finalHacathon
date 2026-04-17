@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, FileText, CreditCard, User, LogOut, CalendarCheck } from 'lucide-react';
-import styles from './Sidebar.module.css'; // Wahi Admin wala CSS use kar saktay hain
+import styles from './PatientSidebar.module.css'; // Wahi Admin wala CSS use kar saktay hain
 
 const PatientSidebar = () => {
     const menuItems = [

@@ -30,6 +30,7 @@ import SuperAdmin from "./pages/SuperAdmin/SuperAdminDashboard";
 import RegisterHospital from "./pages/SuperAdmin/RegisterHospitals";
 import SuperAdminLayout from "./components/SuperAdminLayout";
 import Owners from "./pages/SuperAdmin/Owners";
+import DoctorLayout from "./components/DoctorLayout";
 
 const App = () => {
   return (
@@ -63,7 +64,6 @@ const App = () => {
           {/* Default redirect after login */}
 
           <Route path="/Admin/AdminDashboard" element={<AdminDashboard />} />
-          <Route path="/Doctor/Doctors" element={<Doctors />} />
           <Route path="/Admin/AddDoctorManager" element={<AddDoctorManager />} />
           <Route path="/Admin/UserManagement" element={<UserManagement />} />
           <Route path="/Admin/Analytics" element={<Analytics />} />
@@ -85,6 +85,10 @@ const App = () => {
 
         <Route element={<PatientLayout />}>
           <Route path="/Patient/Dashboard" element={<PatientDashboard />} />
+        </Route>
+
+        <Route>
+            <Route path="/Doctor/Doctors" element={<Doctors />} />
         </Route>
       </Route>
 
