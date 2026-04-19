@@ -1,0 +1,134 @@
+.sidebarWrapper{
+    /* border: 1px solid red; */
+    width: 260px;
+    height: 100vh;
+    z-index: 1000;
+    background-color: #1E293B;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.navHead{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 20px; */
+    color: white;
+    height: 10vh;
+    /* border: 1px solid white; */
+}
+
+.sidebar{
+    width: 100%;
+    /* height: 40px; */
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+    width: 90%;
+    /* min-height: 40px; */
+    /* border: 1px solid red; */
+    /* align-items: center;  */
+    /* background-color: blue; */
+    color: white;
+    padding: 5px;
+    /* overflow-y: auto; */
+
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid  rgb(130, 136, 141);;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.link:hover{
+    border: 1px solid white;
+    transition: all 0.3s ease-in;
+    /* transform: scale(1.03); */
+    transform: translateX(5px);
+    
+}
+
+.activeLink{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white; /* Text white rahega */
+    
+    /* Background halka sa transparent blue */
+    background-color: rgba(59, 130, 246, 0.1); 
+    
+    /* Border ka color */
+    /* border: 1.5px solid #3b82f6;  */
+    border: 1.5px solid rgb(244, 249, 244);
+    
+    /* Border ke corners round karne ke liye */
+    border-radius: 20px; 
+    
+    /* GLOW EFFECT (Shadow): Ye sab se important hai */
+    /* Pehla shadow bahar ki taraf, doosra andar ki taraf (inset) */
+    /* box-shadow: 5px 5px 10px rgba(59, 130, 246, 0.4), 
+                inset 4px 6px 5px rgba(59, 130, 246, 0.2); */
+
+    
+     box-shadow: 5px 5px 10px rgba(244, 249, 244, 0.4), 
+                inset 4px 6px 5px rgba(244, 249, 244, 0.2);
+    transition: all 0.3s ease; /* Smooth transition ke liye */
+
+}
+
+.link span{
+    /* border: 1px solid white; */
+    color: white;
+    /* font-size: 20px; */
+}
+
+.navIcon{
+    color: white;
+    font-size: 20px;
+}
+
+.logOutBtn{
+    width: 100%;
+    /* flex-grow: 1; */
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid white; */
+    align-items: flex-end;
+    /* margin-bottom: 20px; */
+}
+
+.logOutBtn button{
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid white;
+    color: red;
+    display: flex;
+    align-items: center;
+    /* align-items: flex-end; */
+    justify-content: center;
+    gap: 10px;
+    font-size: 17px;
+    
+}

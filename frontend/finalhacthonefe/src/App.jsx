@@ -31,6 +31,11 @@ import RegisterHospital from "./pages/SuperAdmin/RegisterHospitals";
 import SuperAdminLayout from "./components/SuperAdminLayout";
 import Owners from "./pages/SuperAdmin/Owners";
 import DoctorLayout from "./components/DoctorLayout";
+import PatientRecord from "./pages/Doctor/PatientRecord";
+import Prescription from "./pages/Doctor/Prescription";
+import Appointment from "./pages/Doctor/Appointment";
+import LabReports from "./pages/Doctor/LabReports";
+import Settings from "./pages/Doctor/Settings";
 
 const App = () => {
   return (
@@ -87,8 +92,14 @@ const App = () => {
           <Route path="/Patient/Dashboard" element={<PatientDashboard />} />
         </Route>
 
-        <Route>
+        <Route element={<DoctorLayout />}>
             <Route path="/Doctor/Doctors" element={<Doctors />} />
+            <Route path="/Doctor/PatientRecord" element={<PatientRecord />}/>
+            <Route path="/Doctor/Prescription" element={<Prescription />} />
+            <Route path="/Doctor/Appointment" element={<Appointment />} />
+            <Route path="/Doctor/LabReports" element={<LabReports />} />
+            <Route path="/Doctor/Settings" element={<Settings />} />
+
         </Route>
       </Route>
 
