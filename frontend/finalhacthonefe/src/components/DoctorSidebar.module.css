@@ -1,3 +1,9 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .sidebarWrapper{
     /* border: 1px solid red; */
     width: 260px;
@@ -7,7 +13,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
+    position: fixed;
+    /* margin-left: 260px; */
 }
 
 .navHead{
@@ -131,4 +138,99 @@
     gap: 10px;
     font-size: 17px;
     
+}
+
+.smallScreenNav{
+    /* display: block; */
+        z-index: 1000;
+        position: fixed;
+        width: calc(100% - 260px);
+        display: flex;
+        justify-content: space-between;
+        background-color: aqua;
+        height: 50px;
+        align-items: center;
+        box-shadow: 3px 7px 10px rgba(42, 32, 32, 0.25);
+        margin-left: 260px;
+}
+
+.toggleNav{
+    display: none;
+    width: 260px;
+    height: 100vh;
+    z-index: 1000;
+    background-color: #1E293B;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: fixed;
+
+}
+
+.closeNavIcon{
+    display: none;
+}
+
+.menuIcon{
+display: none;
+}
+
+.smallScreenNav h3{
+    margin-left: 20px;
+}
+
+.topbarIcon{
+    width: 100px;
+    display: flex;
+    /* justify-content: space-between; */
+    /* border: 1px solid black; */
+    gap: 20px;
+}
+
+@media (max-width : 768px){
+    .sidebarWrapper{
+        transform: translateX(-100%);
+        transition: all 0.5s ease-in;
+        margin-left: 0px;
+    }
+
+    .smallScreenNav{
+        display: block;
+        z-index: 1000;
+        position: fixed;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: aqua;
+        height: 50px;
+        align-items: center;
+        box-shadow: 3px 7px 10px rgba(42, 32, 32, 0.25);
+        margin-left: 0%;
+    }
+
+    .toggleNav{
+        display: block;
+        left: 0;
+        transition: all 0.5s ease-in;
+    }
+
+    
+
+    .closeNavIcon{
+        display: block;
+        font-size: 30px;
+    }
+
+    .closeNav{
+        /* border: 1px solid white; */
+        margin-left: 30px;
+    }
+
+    .menuIcon{
+        display: block;
+    }
+
+    .navHead{
+        margin-bottom: 20px;
+    }
 }

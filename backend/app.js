@@ -7,6 +7,7 @@ import cors from "cors"
 import router from "./routes/adminRoutes.js";
 import recpRouter from "./routes/receptionRoutes.js";
 import supAdminRouter from "./routes/superAdminRoutes.js";
+import doctorRoute from "./routes/doctorRoutes.js";
 
 
 const app = express()
@@ -21,6 +22,7 @@ app.use("/api/auth",authRoute);
 app.use("/api/admin", router);
 app.use("/api/reception", recpRouter);
 app.use("/api/super-admin",supAdminRouter);
+app.use("/api/doctor/", doctorRoute);
 // app.use("/api/student",studentDashboardRoutes);
 
 app.post("/apitest", (request, response) => {

@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    width: calc(100% - 260px);
+    padding: 30px;
+    margin-left: 260px;
+    background-color: #EFF3F6;
+    margin-top: 70px;
+    min-height: 100vh;
+
+}
+
+.StatsCard{
+    width: 100%;
+    min-height: 150px;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(164, 168, 169);
+    border-radius: 20px;
+
+}
+
+.patientsList{
+    width : 100%;
+    min-height: 100px;
+    border: 1px solid red;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+
+.patientsList table{
+    width: 100%;
+    border: 1px solid burlywood;
+    border-radius: 10px;
+
+}
+
+.patientsList th{
+    border: 1px solid black;
+}
+
+.patientsList td{
+    border: 1px solid green;
+
+}
+
+.statsIcon{
+    width: 33px;
+    height: 33px;
+    /* border: 1px solid red; */
+    color: green;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: #DCFCE7;
+
+    
+}
+
+@media (max-width : 768px){
+    .mainContainer{
+        margin-left: 0px;
+        width: 100%;
+
+    }
+
+}

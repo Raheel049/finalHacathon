@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DoctorSidebar.module.css";
 import {
   LayoutDashboard,
@@ -7,12 +7,20 @@ import {
   Microscope,
   ClipboardPen,
   Settings,
-  LogOut
+  LogOut,
+  MenuIcon,
+  Bell,
+  LucideUserCircle
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { FaHospitalSymbol, FaPlusCircle } from "react-icons/fa";
+import { FaHospitalSymbol, FaPlusCircle, FaTimes } from "react-icons/fa";
 
 const DoctorSidebar = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+
+
   const navItem = [
     {
       name: "Dashboard",
@@ -33,7 +41,7 @@ const DoctorSidebar = () => {
     },
 
     {
-      name: "E-rescription",
+      name: "E-prescription",
       path: "/Doctor/Prescription",
       icon: <ClipboardPen />,
     },
@@ -57,10 +65,23 @@ const DoctorSidebar = () => {
     <div>
       <main>
         <section>
-          <div className={styles.sidebarWrapper}>
+          <div className={styles.smallScreenNav}>
+            <MenuIcon className={styles.menuIcon} onClick={() => {setIsOpen(true)}} />
+            <h3>Clinic SaaS</h3>
+            <div className={styles.topbarIcon}>
+              <Bell />
+              <LucideUserCircle />
+            </div>
+          </div>
+        </section>
+        <section className={styles.navbar}>
+          <div className={`${isOpen ? styles.toggleNav : styles.sidebarWrapper}`}>
             <div className={styles.navHead}>
               <FaPlusCircle />
               <h2>Clinic Saas</h2>
+              <div className={styles.closeNav}>
+                <FaTimes className={styles.closeNavIcon} onClick={() => {setIsOpen(false)}}/>
+              </div>
             </div>
 
             <aside className={styles.sidebar}>
@@ -72,6 +93,7 @@ const DoctorSidebar = () => {
                     className={({ isActive }) =>
                       isActive ? styles.activeLink : styles.link
                     }
+                    onClick={() => {setIsOpen(false)}}
                   >
                     <span>{item.icon}</span>
                     <span>{item.name}</span>
