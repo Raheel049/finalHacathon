@@ -7,12 +7,12 @@
 .mainContainer{
     width: calc(100% - 260px);
     margin-left: 260px;
+    margin-top: 70px;
 }
 
 @media (max-width : 768px){
     .mainContainer{
         margin-left: 0px;
-    margin-top: 50px;
 
     }
 }

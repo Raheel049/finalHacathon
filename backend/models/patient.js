@@ -25,6 +25,17 @@ const patientSchema = new mongoose.Schema({
         trim: true,
         unique : true
     },
+
+    ward : {
+        type : String,
+        require : true,
+    },
+
+    doctor : {
+        type : String,
+        required : false,
+    },
+
     bloodGroup: { 
         type: String,
         enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']

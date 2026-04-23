@@ -1,0 +1,12 @@
+.mainContainer{
+    width: calc(100% -260px);
+    margin-left: 260px;
+    background-color: brown;
+}
+
+@media (max-width : 768px){
+    .mainContainer{
+        width: 100%;
+        margin-left: 0;
+    }
+}

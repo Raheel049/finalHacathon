@@ -40,7 +40,8 @@ const HomePage = () => {
                     Doctor: "/Doctor/Doctors",
                     Receptionist: "/Receptionist/ReceptionDashboard",
                     Patient: "/Patient/Dashboard",
-                    SuperAdmin : "/SuperAdmin/SuperAdminDashboard"
+                    SuperAdmin : "/SuperAdmin/SuperAdminDashboard",
+                    WardReceptionist : "/WardReceptionist/WardDashboard"
                 };
 
                 // Agar role valid hai to direct navigate kar jao
@@ -61,7 +62,12 @@ const HomePage = () => {
         Doctor: { label: "Doctor Dashboard", path: "/Doctor/Doctors", icon: "👨‍⚕️" },
         Receptionist: { label: "Reception Dashboard", path: "/Receptionist/ReceptionDashboard", icon: "🏢" },
         Admin: { label: "Admin Panel", path: "/Admin/AdminDashboard", icon: "⚙️" },
-        Patient: { label: "Patient Portal", path: "/Patient/Dashboard", icon: "🏥" }
+        Patient: { label: "Patient Portal", path: "/Patient/Dashboard", icon: "🏥" },
+        SuperAdmin: { label: "Super Admin", path: "/SuperAdmin/SuperAdminDashboard", icon: "🏥" },
+        WardReceptionist: { label: "Ward Receptionist", path: "/WardReceptionist/WardDashboard", icon: "🏥" },
+
+
+
     };
 
     const currentStaffData = staffPortals[userRole];

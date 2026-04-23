@@ -7,12 +7,18 @@
 .mainContainer{
     width: calc(100% - 260px);
     margin-left: 260px;
+    margin-top: 70px;
+    background-color: #EFF3F6;
+    min-height: 100vh;
+    padding: 20px;
+    
 }
 
 @media (max-width : 768px){
     .mainContainer{
         margin-left: 0px;
-    margin-top: 50px;
+        margin-top: 50px;
+        width: 100%;
 
     }
 }

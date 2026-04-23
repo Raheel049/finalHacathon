@@ -1,10 +1,11 @@
 import express from 'express';
 import Patient from '../models/patient.js';
 import patientAppointment from '../models/ReceptionistModels/patientAppointment.js';
+import Doctor from '../models/doctor.js';
 
 export const addPatient = async (req, res) => {
     try {
-        const { name, age, gender, phone, email, bloodGroup, address } = req.body;
+        const { name, age, gender, phone, email, bloodGroup, address, ward, doctor } = req.body;
 
         // 1. Basic Validation
         if (!name || !age || !gender || !phone) {
@@ -31,7 +32,9 @@ export const addPatient = async (req, res) => {
             phone,
             email,
             bloodGroup,
-            address
+            address,
+            ward,
+            doctor
         });
 
         await newPatient.save();
@@ -160,6 +163,22 @@ export const createAppointment = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+export const getAllDoctorsName = async (request, response) => {
+    try {
+        const allDoctorsName = await Doctor.find().select("name")
+        response.status(200).json({
+            message : "Doctors name Founded",
+            status : true,
+            data : allDoctorsName,
+        })
+    } catch (error) {
+        response.status(500).json({
+            message : error.message || "Inernal server error",
+            status : false,
+        })
+    }
+}
 
 // 3. Sab appointments dekhne ka function (With Populate Magic)
 export const getAllAppointments = async (req, res) => {

@@ -13,11 +13,13 @@ import { FaBars, FaTimes, FaSearch, FaBell, FaUserCircle, } from 'react-icons/fa
 
 const ReceptionSidebar = () => {
     const menuItems = [
+        
         { name: 'Desk Overview', path: '/Receptionist/ReceptionDashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'Add Patient', path: '/Receptionist/AddPatient', icon: <UserPlus size={20} /> },
         { name: 'Appointments', path: '/Receptionist/PatientAppointmentManager', icon: <CalendarClock size={20} /> },
         { name: 'Patient Records', path: '/Receptionist/PatientList', icon: <Users size={20} /> },
         { name: 'Billing/Reports', path: '/Receptionist/reports', icon: <FileText size={20} /> },
+
     ];
 
     const [isOpen, setIsOpen] = useState(false)

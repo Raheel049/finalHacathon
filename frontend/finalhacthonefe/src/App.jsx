@@ -36,6 +36,9 @@ import Prescription from "./pages/Doctor/Prescription";
 import Appointment from "./pages/Doctor/Appointment";
 import LabReports from "./pages/Doctor/LabReports";
 import Settings from "./pages/Doctor/Settings";
+import WardDashboard from "./pages/WardReception/WardDashboard";
+import WardLayout from "./components/WardLayout";
+
 
 const App = () => {
   return (
@@ -101,6 +104,12 @@ const App = () => {
             <Route path="/Doctor/Settings" element={<Settings />} />
 
         </Route>
+
+        <Route element={<WardLayout />}>
+        <Route path="/WardReceptionist/WardDashboard" element={<WardDashboard />}  />
+
+        </Route>
+
       </Route>
 
       {/* 404 Redirect */}

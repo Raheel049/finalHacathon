@@ -147,7 +147,8 @@
         width: calc(100% - 260px);
         display: flex;
         justify-content: space-between;
-        background-color: aqua;
+        background-color: rgb(17, 28, 28);
+        color: #fff;
         height: 50px;
         align-items: center;
         box-shadow: 3px 7px 10px rgba(42, 32, 32, 0.25);
@@ -201,7 +202,7 @@ display: none;
         width: 100%;
         display: flex;
         justify-content: space-between;
-        background-color: aqua;
+        background-color: rgb(17, 28, 28);
         height: 50px;
         align-items: center;
         box-shadow: 3px 7px 10px rgba(42, 32, 32, 0.25);

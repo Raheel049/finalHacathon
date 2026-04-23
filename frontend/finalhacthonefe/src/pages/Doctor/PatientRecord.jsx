@@ -7,7 +7,7 @@ const PatientRecord = () => {
       <main className={styles.mainContainer}>
         <section>
           <div>
-            <h1>Patient Record</h1>
+            <h1>Patient Record with the name of </h1>
           </div>
         </section>
       </main>

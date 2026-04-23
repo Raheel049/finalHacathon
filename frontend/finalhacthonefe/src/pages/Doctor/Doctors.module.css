@@ -23,36 +23,92 @@
     flex-wrap: wrap;
     margin-top: 20px;
     padding: 20px;
-    background-color: rgb(164, 168, 169);
+    /* background-color: rgb(164, 168, 169); */
     border-radius: 20px;
 
 }
 
 .patientsList{
     width : 100%;
-    min-height: 100px;
-    border: 1px solid red;
+    min-height: 200px;
+    /* border: 1px solid red; */
     margin-top: 20px;
     border-radius: 20px;
     padding: 10px;
 
 }
 
+.searchPatient{
+    width: 100%;
+    height: 100px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(177, 210, 233);
+    border-radius: 20px;
+}
+
+.searchPatient label{
+    margin-left : 10%;   
+    margin-bottom: 10px;
+    
+}
+
+.searchPatient input{
+    width: 80%;
+    outline: none;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-left : 10%;   
+    padding-left: 20px;
+    background-color: #fff;
+    border: none;
+    height: 40px;
+    
+
+}
+
+.patientsList tbody{
+    min-height: 200px;
+    padding: 5px;
+}
+
 
 .patientsList table{
     width: 100%;
-    border: 1px solid burlywood;
+    /* border: 1px solid rgb(42, 35, 26); */
     border-radius: 10px;
+    min-height: 100%;
+    padding: 10px;
+    box-shadow: 5px 10px 7px rgba(22, 14, 20, 0.5);
+}
 
+
+
+.patientsList tr{
+    margin: 5px;
 }
 
 .patientsList th{
     border: 1px solid black;
+    padding: 6px;
 }
 
 .patientsList td{
     border: 1px solid green;
+    text-align: center;
+    padding: 5px;
+    
+    border-radius: 5px;
+}
 
+.patientsList td:hover{
+    background-color: #ffffff;
+    transition: all 0.3s ease-in;
+    transform: scale(1.03);
+    cursor: pointer;
 }
 
 .statsIcon{
@@ -74,4 +130,12 @@
 
     }
 
+}
+
+@media (max-width : 600px){
+
+    
+    .patientsList{
+        overflow-x: auto;
+    }
 }

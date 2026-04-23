@@ -17,6 +17,25 @@ const PatientAppointment = ({ initialData, resetStep }) => {
     feeStatus: "Unpaid",
   });
 
+  const [doctor, setDoctor] = useState([]);
+
+  const allDoctorsName = async () => {
+    try {
+      const response = await axiosInstance.get("/reception/get-all-doctors-name");
+
+      if(response.data.status === true || response.data.status === 200){
+      setDoctor(response.data.data)
+
+      }
+
+      console.log("DoctorsName",response.data.data)
+
+    } catch (error) {
+      toast.error(error.message || "Some thing went wrong!")
+    }
+  }
+
+
   useEffect(() => {
     if (initialData) {
       setPatientData((prev) => ({
@@ -29,7 +48,11 @@ const PatientAppointment = ({ initialData, resetStep }) => {
     }
   }, [initialData]);
 
-  console.log(patientData);
+  useEffect(() => {
+    allDoctorsName();
+  },[]);
+
+  // console.log(patientData);
 
   const createAppointment = async () => {
     try {
@@ -84,13 +107,19 @@ const PatientAppointment = ({ initialData, resetStep }) => {
         </div>
         <div className={styles.inputBox}>
           <label>Select Doctor</label>
-          <input
-            type="text"
-            name="doctorName"
-            placeholder="Doctor Name"
+          
+            <select name="doctorName"
             onChange={handleInput}
-            className={styles.glassInput}
-          />
+            className={styles.glassInput}>
+
+              <option value="">Select</option>
+
+              {doctor.map((doctorName, index) => (
+              <option value={doctorName.name} key={index}>{doctorName.name}</option>
+              ))}
+
+
+            </select>
         </div>
         <div className={styles.inputBox}>
           <label>Date</label>
