@@ -5,6 +5,10 @@
     margin-top: 50px;
 }
 
+/* .mainContainer h1{
+    margin-top: 50px;
+} */
+
 @media (max-width : 768px){
     .mainContainer{
         width: 100%;

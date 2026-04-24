@@ -38,6 +38,8 @@ import LabReports from "./pages/Doctor/LabReports";
 import Settings from "./pages/Doctor/Settings";
 import WardDashboard from "./pages/WardReception/WardDashboard";
 import WardLayout from "./components/WardLayout";
+import AssignDoctor from "./pages/WardReception/AssignDoctor";
+import UpadatePatientForm from "./pages/wardReception/wardReceptionist";
 
 
 const App = () => {
@@ -107,7 +109,8 @@ const App = () => {
 
         <Route element={<WardLayout />}>
         <Route path="/WardReceptionist/WardDashboard" element={<WardDashboard />}  />
-
+        <Route path="/WardReceptionist/AssignDoctor" element={<AssignDoctor />} />
+        <Route path="/WardReceptionist/WardReceptionist" element={<UpadatePatientForm />} />
         </Route>
 
       </Route>
