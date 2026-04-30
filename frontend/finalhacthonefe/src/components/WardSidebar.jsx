@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import styles from "./WardSidebar.module.css";
-import { LucideBellDot, LucidePlusCircle } from "lucide-react";
+import { BarChart3, LucideBellDot, LucidePlusCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { LuLayoutDashboard, LuMenu, LuPenLine, LuUserRound, LuBellDot, LuCross, LuUser } from "react-icons/lu";
+import {
+  LuLayoutDashboard,
+  LuMenu,
+  LuPenLine,
+  LuUserRound,
+  LuBellDot,
+  LuCross,
+  LuUser,
+  LuLogOut
+} from "react-icons/lu";
 import { FaTimes } from "react-icons/fa";
 
 const WardSidebar = () => {
-
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const navPages = [
     {
@@ -17,15 +25,21 @@ const WardSidebar = () => {
     },
 
     {
-        name : "Assign Doctor",
-        path : "/WardReceptionist/AssignDoctor",
-        icon : <LuPenLine />
+      name: "Ward Receptionist",
+      path: "/WardReceptionist/AssignDoctor",
+      icon: <LuUser/>,
     },
 
     {
-        name : "Ward Receptionist",
-        path : "/WardReceptionist/WardReceptionist",
-        icon : <LuUser />
+      name: "Assign Doctor",
+      path: "/WardReceptionist/WardReceptionist",
+      icon: <LuPenLine />,
+    },
+
+    {
+      name: "Analytics",
+      path: "/WardReceptionist/WardAnalytics",
+      icon: <BarChart3 />,
     },
   ];
 
@@ -33,36 +47,52 @@ const WardSidebar = () => {
     <div>
       <main>
         <section>
-            <div className={styles.topBar}>
-                <LuMenu className={`${styles.icon} ${styles.menuIcon}`} onClick={() => {setIsOpen(true)}}/>
-                <h4>Best Services</h4>
-                <div className={styles.sideIcon}>
-                    <LuBellDot className={styles.icon}/>
-                    <LuUserRound className={styles.icon}/>
-                </div>
+          <div className={styles.topBar}>
+            <LuMenu
+              className={`${styles.icon} ${styles.menuIcon}`}
+              onClick={() => {
+                setIsOpen(true);
+              }}
+            />
+            <h4>Best Services</h4>
+            <div className={styles.sideIcon}>
+              <LuBellDot className={styles.icon} />
+              <LuUserRound className={styles.icon} />
             </div>
-          <div className={`${(isOpen) ? styles.openBar : styles.mainContainer}`}>
+          </div>
+          <div className={`${isOpen ? styles.openBar : styles.mainContainer}`}>
             <div className={styles.navLogo}>
-              
-            <LucidePlusCircle className={styles.icon} />
-              <h3>
-                 Clinic Saas
-              </h3>
+              <LucidePlusCircle className={styles.icon} />
+              <h3>Clinic Saas</h3>
 
-              <FaTimes className={styles.closeBar} onClick={() => {setIsOpen(false)}}/>
+              <FaTimes
+                className={styles.closeBar}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              />
             </div>
             <div className={styles.navbar}>
               <div className={styles.navItems}>
-              {navPages.map((item, index) => (
-                <NavLink to={item.path} 
-                        key={index}
-                        className={({isActive}) => isActive ? styles.linkActive : styles.linkInActive}
-                >
-                  {item.icon}
-                  <span>{item.name}</span>
-                </NavLink>
-              ))}
+                {navPages.map((item, index) => (
+                  <NavLink
+                    to={item.path}
+                    key={index}
+                    className={({ isActive }) =>
+                      isActive ? styles.linkActive : styles.linkInActive
+                    }
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </NavLink>
+                ))}
               </div>
+            </div>
+
+            <div className={styles.footer}>
+              <button className={styles.logoutBtn}>
+                <LuLogOut size={20} /> <span>Logout</span>
+              </button>
             </div>
           </div>
         </section>
