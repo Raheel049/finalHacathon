@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./WardSidebar.module.css";
-import { BarChart3, LucideBellDot, LucidePlusCircle } from "lucide-react";
+import { BarChart3, LucideBellDot, LucidePlusCircle, User2, Users } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   LuLayoutDashboard,
@@ -31,16 +31,24 @@ const WardSidebar = () => {
     },
 
     {
-      name: "Assign Doctor",
-      path: "/WardReceptionist/WardReceptionist",
-      icon: <LuPenLine />,
-    },
-
-    {
       name: "Analytics",
       path: "/WardReceptionist/WardAnalytics",
       icon: <BarChart3 />,
     },
+
+    {
+      name : "Patient Form",
+      path : "/WardReceptionist/patientForm",
+      icon : <User2 />
+
+    },
+
+
+    {
+      name : "Select Patient",
+      path : "/WardReceptionist/SelectPatient",
+      icon : <Users />
+    }
   ];
 
   return (

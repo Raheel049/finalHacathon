@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
-import styles from "./wardReceptionist.module.css";
+import styles from "./patientForm.module.css";
 import { UserPlus } from "lucide-react";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 const UpadatePatientForm = () => {
+
+  const location = useLocation()
+  const patientToUpdate = location.state?.patient;
+  console.log("patient",patientToUpdate);
+
   const [formData, setFormData] = useState({
     name: "",
     age: "",
