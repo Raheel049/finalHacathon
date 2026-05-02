@@ -3,12 +3,19 @@ import axiosInstance from "../../utils/axiosInstance";
 import styles from "./patientForm.module.css";
 import { UserPlus } from "lucide-react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const UpadatePatientForm = () => {
 
   const location = useLocation()
   const patientToUpdate = location.state?.patient;
+  const allDoctors = location.state?.doctors;
+
+  console.log("All Doctors",allDoctors);
+
+  const navigate = useNavigate()
+
   console.log("patient",patientToUpdate);
 
   const [formData, setFormData] = useState({
@@ -29,7 +36,7 @@ const UpadatePatientForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axiosInstance.post("/reception/add-patient", formData);
+      const res = await axiosInstance.post(`/ward-reception/assign-doctor/${patientToUpdate._id}`, formData);
       toast.success(res.data.message);
       setFormData({
         name: "",
@@ -42,6 +49,7 @@ const UpadatePatientForm = () => {
         ward: "select",
         doctor: "select",
       });
+      navigate("/WardReceptionist/WardDashboard")
     } catch (err) {
       toast.error(err.response?.data?.message || "Registration failed");
     }
@@ -62,10 +70,11 @@ const UpadatePatientForm = () => {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
+                value={patientToUpdate.name}
                 onChange={handleChange}
                 required
                 placeholder="e.g. Ali Khan"
+                disabled
               />
             </div>
             <div className={styles.inputBox}>
@@ -73,10 +82,11 @@ const UpadatePatientForm = () => {
               <input
                 type="number"
                 name="age"
-                value={formData.age}
+                value={patientToUpdate.age}
                 onChange={handleChange}
                 required
                 placeholder="25"
+                disabled
               />
             </div>
           </div>
@@ -87,18 +97,20 @@ const UpadatePatientForm = () => {
               <input
                 type="text"
                 name="phone"
-                value={formData.phone}
+                value={patientToUpdate.phone}
                 onChange={handleChange}
                 required
                 placeholder="+92 3xx xxxxxxx"
+                disabled
               />
             </div>
             <div className={styles.inputBox}>
               <label>Gender *</label>
               <select
                 name="gender"
-                value={formData.gender}
+                value={patientToUpdate.gender}
                 onChange={handleChange}
+                disabled
               >
                 <option value="">Select</option>
                 <option value="Male">Male</option>
@@ -114,17 +126,19 @@ const UpadatePatientForm = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                value={patientToUpdate.email}
                 onChange={handleChange}
                 placeholder="patient@example.com"
+                disabled
               />
             </div>
             <div className={styles.inputBox}>
               <label>Blood Group</label>
               <select
                 name="bloodGroup"
-                value={formData.bloodGroup}
+                value={patientToUpdate.bloodGroup}
                 onChange={handleChange}
+                disabled
               >
                 <option value="">Select</option>
                 <option value="A+">A+</option>
@@ -139,7 +153,7 @@ const UpadatePatientForm = () => {
           <div className={styles.row}>
             <div className={styles.inputBox}>
               <label>Ward</label>
-              <select name="ward" value={formData.ward} onChange={handleChange}>
+              <select name="ward" value={patientToUpdate.ward} onChange={handleChange} disabled>
                 <option value="">Select</option>
                 <option value="gernal">Genral</option>
                 <option value="pediatric">Pediatric</option>
@@ -160,14 +174,12 @@ const UpadatePatientForm = () => {
                 onChange={handleChange}
               >
                 <option value="">Select</option>
-                <option value="gernal">Genral</option>
-                <option value="pediatric">Pediatric</option>
-                <option value="pulmonary">Pulmonary</option>
-                <option value="ICU">ICU</option>
-                <option value="Emergency">Emergency</option>
-                <option value="Cardiologist">Cardiologist</option>
-                <option value="Neurologist">Neurologist</option>
-                <option value="Pediatrician">Pediatrician</option>
+                
+                {
+                  allDoctors.map((doctor, index) => (
+                    <option value={doctor.name} key={index}>{doctor.name}</option>
+                  ))
+                }
               </select>
             </div>
           </div>
@@ -176,10 +188,11 @@ const UpadatePatientForm = () => {
             <label>Home Address</label>
             <textarea
               name="address"
-              value={formData.address}
+              value={patientToUpdate.address}
               onChange={handleChange}
               rows="3"
               placeholder="Street, City, Country"
+              disabled
             ></textarea>
           </div>
 

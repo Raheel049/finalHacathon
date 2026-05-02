@@ -36,13 +36,6 @@ const WardSidebar = () => {
       icon: <BarChart3 />,
     },
 
-    {
-      name : "Patient Form",
-      path : "/WardReceptionist/patientForm",
-      icon : <User2 />
-
-    },
-
 
     {
       name : "Select Patient",

@@ -94,7 +94,7 @@ const AddPatient = () => {
 
                     <div className={styles.inputBox}>
                     <label>Doctor</label>
-                        <select name="doctor" value={formData.doctor} onChange={handleChange}>
+                        <select name="doctor" value={formData.doctor} onChange={handleChange} disabled>
                             <option value="">Select</option>
                             <option value="gernal">Genral</option>
                             <option value="pediatric">Pediatric</option>
