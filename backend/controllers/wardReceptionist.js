@@ -1,10 +1,28 @@
 import Doctor from "../models/doctor.js";
 import Patient from "../models/patient.js"
 
-export const receptionistData = (request,response) => {
+export const receptionistData = async (request, response) => {
     try {
-        const {token} = request.Authorization.headers
+        
+        if(!req.user || req.user.id){
+            return request.status(400).json({
+                message : "User ID missing",
+                status : false
+            })
+        }
 
+        const receptionist = await userModel.findById(req.user.id);
+
+        if(!receptionist){
+            return response.status(404).json({
+                message : "Repectionist not found",
+                status : false,
+            });
+        }
+
+        response.status(200).json({
+            message : ""
+        })
         
 
     } catch (error) {

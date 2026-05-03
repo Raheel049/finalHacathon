@@ -42,6 +42,7 @@ import WardLayout from "./components/WardLayout";
 import WardAnalytics from "./pages/WardReception/WardAnalytics";
 import SelectPatient from "./pages/WardReception/selectPatient";
 import UpadatePatientForm from "./pages/WardReception/patientForm";
+import AddReceptionist from "./pages/Admin/AddReceptionist";
 
 
 const App = () => {
@@ -78,6 +79,7 @@ const App = () => {
           <Route path="/Admin/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/Admin/AddDoctorManager" element={<AddDoctorManager />} />
           <Route path="/Admin/UserManagement" element={<UserManagement />} />
+          <Route path="/Admin/AddReceptionist" element={<AddReceptionist />} />
           <Route path="/Admin/Analytics" element={<Analytics />} />
           <Route path="/Admin/Subscription" element={<Subscription />} />
           <Route path="/Admin/Usage" element={<SystemUsage />} />

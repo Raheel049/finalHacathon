@@ -31,6 +31,13 @@ const Sidebar = () => {
       path: "/Admin/AddDoctorManager",
       icon: <UserRound size={20} />,
     },
+
+    {
+      name : "Add Receptionist",
+      path : "/Admin/AddReceptionist",
+      icon : <Users size={20} />
+    },
+
     {
       name: "Change Role",
       path: "/Admin/UserManagement",

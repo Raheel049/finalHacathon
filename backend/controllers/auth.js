@@ -126,6 +126,7 @@ export const loginHandler = async (request, response) => {
     }
 
     const user = await userModel.findOne({ email });
+    
 
     if (!user) {
       return response.status(401).json({

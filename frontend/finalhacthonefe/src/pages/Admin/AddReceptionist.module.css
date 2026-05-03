@@ -1,0 +1,95 @@
+/* AddReceptionist.module.css */
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Do columns banayga horizontal desktop par */
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.inputGroup input,
+.inputGroup select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.inputGroup input::placeholder {
+    color: #bbb;
+}
+
+/* Button Styling */
+.btn {
+    grid-column: span 2; /* Button puri width lega */
+    padding: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design (Mobile ke liye) */
+@media (max-width: 600px) {
+    .formGrid {
+        grid-template-columns: 1fr; /* Mobile par ek column ho jayega */
+    }
+
+    .btn {
+        grid-column: span 1;
+    }
+    
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
